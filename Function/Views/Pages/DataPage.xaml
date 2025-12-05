@@ -1,0 +1,115 @@
+<Page
+    x:Class="Function.Views.Pages.DataPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Function.Views.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:Function.Models"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    Title="DataPage"
+    d:DataContext="{d:DesignInstance local:DataPage,
+                                     IsDesignTimeCreatable=False}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    ui:Design.Background="{DynamicResource ApplicationBackgroundBrush}"
+    ui:Design.Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    Foreground="{DynamicResource TextFillColorPrimaryBrush}"
+    ScrollViewer.CanContentScroll="False"
+    mc:Ignorable="d"
+   
+    >
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding ViewModel.LoadIpIncrementCommand}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+
+        <StackPanel>
+            <ui:CardControl Margin="0,0,0,12">
+                <ui:CardControl.Header>
+                    <StackPanel Orientation="Horizontal">
+
+                        <Ellipse Width="20" Height="20"
+                             Fill="{Binding ViewModel.IpInfoVar.Status ,Mode=OneWay }"
+                             Stroke="Black"
+                             StrokeThickness="1"
+                            Margin="10,0,10,0"/>
+                        <ui:TextBlock
+                            TextAlignment="Center"
+                            
+                            FontTypography="BodyStrong"
+                             Margin="20,5,0,0"
+                            Text="IP :" />
+                        <ui:TextBlock
+                           
+                            FontTypography="Body"
+                            Text="{Binding ViewModel.IpInfoVar.Ip ,Mode=OneWay}" 
+                            Margin="4,5,0,0"/>
+
+                        <!--<ui:Button Grid.Column="2" Content="Click me!" 
+                                   Command="{Binding ViewModel.CounterIncrementCommand, Mode=OneWay}" Margin="43,0,0,0">
+                            
+                        </ui:Button>-->
+                        <ui:TextBlock
+                        FontTypography="BodyStrong"
+                        Text="子网掩码 :" 
+                        Margin="20,5,0,0"/>
+
+                        <ui:TextBlock
+                            FontTypography="Body"
+                            Text="{Binding ViewModel.IpInfoVar.SubNet ,Mode=OneWay}" 
+                            Margin="4,5,0,0"/>
+
+                        <ui:TextBlock
+                         FontTypography="BodyStrong"
+                        Text="网关 :" 
+                        Margin="20,5,0,0"/>
+
+                        <ui:TextBlock
+                        FontTypography="Body"
+                        Text="{Binding ViewModel.IpInfoVar.GetWay ,Mode=OneWay}" 
+                        Margin="4,5,0,0"/>
+
+                        <ui:Button  Margin="20,0,0,0" Content="Ping" 
+                                    Appearance="Primary"
+                                    Command="{Binding ViewModel.PingIncrementCommand,Mode=OneWay}"
+                                    ></ui:Button>
+                    </StackPanel>
+                </ui:CardControl.Header>
+
+
+
+            </ui:CardControl>
+
+            <ui:VirtualizingItemsControl
+               
+                ItemsSource="{Binding ViewModel.Colors, Mode=OneWay}"
+                VirtualizingPanel.CacheLengthUnit="Item">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate DataType="{x:Type models:DataColor}">
+                        <ui:TextBlock
+                            Width="45"
+                            
+                            Margin="2"
+                            Padding="0"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Appearance="Secondary"
+                            TextAlignment="Center"
+                            
+                            Background="{Binding Color, Mode=OneWay}"
+                            FontSize="20"
+                            Text="{Binding Num, Mode=OneWay}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ui:VirtualizingItemsControl>
+        </StackPanel>
+
+        <ui:ProgressRing  Visibility="{Binding ViewModel.ProRingVis}" IsIndeterminate="True"/>
+
+    </Grid>
+</Page>
