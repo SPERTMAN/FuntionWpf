@@ -3,7 +3,7 @@ using Wpf.Ui.Abstractions.Controls;
 
 namespace Function.Views.Pages
 {
-    public partial class DataPage : INavigableView<DataViewModel>
+    public partial class DataPage : INavigableView<DataViewModel> 
     {
         public DataViewModel ViewModel { get; }
 

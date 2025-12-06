@@ -13,7 +13,8 @@ namespace Function.Views.Windows
         public MainWindow(
             MainWindowViewModel viewModel,
             INavigationViewPageProvider navigationViewPageProvider,
-            INavigationService navigationService
+            INavigationService navigationService,
+            ISnackbarService snackbarService
         )
         {
             ViewModel = viewModel;
@@ -25,8 +26,8 @@ namespace Function.Views.Windows
             SetPageService(navigationViewPageProvider);
 
             navigationService.SetNavigationControl(RootNavigation);
-
-
+            //注册提示
+            snackbarService.SetSnackbarPresenter(SnackbarPresenter);
             ApplicationThemeManager.Apply(
                      ApplicationTheme.Dark,
                      WindowBackdropType.Mica

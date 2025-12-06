@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Reflection;
-using System.Windows.Threading;
+﻿using Function.Helpers;
 using Function.Services;
 using Function.ViewModels.Pages;
 using Function.ViewModels.Windows;
@@ -9,6 +7,9 @@ using Function.Views.Windows;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.IO;
+using System.Reflection;
+using System.Windows.Threading;
 using Wpf.Ui;
 using Wpf.Ui.DependencyInjection;
 
@@ -52,6 +53,16 @@ namespace Function
                 services.AddSingleton<DataViewModel>();
                 services.AddSingleton<SettingsPage>();
                 services.AddSingleton<SettingsViewModel>();
+
+                //注册
+                
+                //注册弹窗
+                // 注册 WPF UI 服务
+                services.AddSingleton<ISnackbarService, SnackbarService>();
+
+                //注册数据库
+                services.AddSingleton<INetworkDataService, LiteDbHelpers>();
+
             }).Build();
 
         /// <summary>

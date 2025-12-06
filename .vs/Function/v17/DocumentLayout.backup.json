@@ -3,53 +3,6 @@
   "WorkspaceRootPath": "E:\\Desktop\\wpf ip\\Process\\Function\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\viewmodels\\pages\\dataviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\viewmodels\\pages\\dataviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\views\\pages\\datapage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\views\\pages\\datapage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\moumou\\AppData\\Local\\Temp\\.vsdbgsrc\\3387177b3749539d9bbbcbabe50304b8d6f8a95cdfee2ad796068667ebf8aa3a\\CallSiteFactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\viewmodels\\pages\\dashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\viewmodels\\pages\\dashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\models\\ipinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\models\\ipinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\models\\datacolor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\models\\datacolor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\views\\pages\\dashboardpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\views\\pages\\dashboardpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\views\\windows\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\views\\windows\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\views\\pages\\dashboardpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\views\\pages\\dashboardpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\models\\appconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\models\\appconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\views\\windows\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\views\\windows\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\viewmodels\\pages\\settingsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\viewmodels\\pages\\settingsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -58,8 +11,67 @@
       "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\views\\pages\\settingspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\viewmodels\\windows\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\viewmodels\\windows\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\views\\dialog\\editdatadia.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\views\\dialog\\editdatadia.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\views\\dialog\\editdatadia.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\views\\dialog\\editdatadia.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\models\\ipinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\models\\ipinfo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\helpers\\litedbhelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\helpers\\litedbhelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\views\\pages\\datapage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\views\\pages\\datapage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\services\\inetworkdataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\services\\inetworkdataservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\views\\pages\\dashboardpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\views\\pages\\dashboardpage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\views\\pages\\dashboardpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\views\\pages\\dashboardpage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\viewmodels\\pages\\dashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\viewmodels\\pages\\dashboardviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\moumou\\AppData\\Local\\Temp\\.vsdbgsrc\\7c0c2bba808e0f2b7a12b62178b5221c12a0421a503777ec5b37acafcb496885\\XamlReader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\models\\appconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\models\\appconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\models\\genapp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\models\\genapp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\viewmodels\\pages\\editdataviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\viewmodels\\pages\\editdataviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\viewmodels\\pages\\dataviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\viewmodels\\pages\\dataviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\views\\windows\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\views\\windows\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|e:\\desktop\\wpf ip\\process\\function\\function\\views\\windows\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F837CC9B-DB24-4D26-BC7D-FF5FD3A396D6}|Function\\Function.csproj|solutionrelative:function\\views\\windows\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -69,22 +81,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CallSiteFactory.cs",
-              "DocumentMoniker": "C:\\Users\\moumou\\AppData\\Local\\Temp\\.vsdbgsrc\\3387177b3749539d9bbbcbabe50304b8d6f8a95cdfee2ad796068667ebf8aa3a\\CallSiteFactory.cs",
-              "ToolTip": "C:\\Users\\moumou\\AppData\\Local\\Temp\\.vsdbgsrc\\3387177b3749539d9bbbcbabe50304b8d6f8a95cdfee2ad796068667ebf8aa3a\\CallSiteFactory.cs [\u53EA\u8BFB]",
-              "ViewState": "AgIAAPUBAAAAAAAAAAAiwCICAAAfAAAAAQAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-04T13:05:00.932Z",
-              "EditorCaption": " [\u53EA\u8BFB]"
             },
             {
               "$type": "Bookmark",
@@ -92,15 +93,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DashboardPage.xaml.cs",
-              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Views\\Pages\\DashboardPage.xaml.cs",
-              "RelativeDocumentMoniker": "Function\\Views\\Pages\\DashboardPage.xaml.cs",
-              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Views\\Pages\\DashboardPage.xaml.cs",
-              "RelativeToolTip": "Function\\Views\\Pages\\DashboardPage.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvw4AAAAiAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "SettingsViewModel.cs",
+              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\ViewModels\\Pages\\SettingsViewModel.cs",
+              "RelativeDocumentMoniker": "Function\\ViewModels\\Pages\\SettingsViewModel.cs",
+              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\ViewModels\\Pages\\SettingsViewModel.cs",
+              "RelativeToolTip": "Function\\ViewModels\\Pages\\SettingsViewModel.cs",
+              "ViewState": "AgIAAC0BAAAAAAAAAAAuwEEBAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-04T11:07:41.842Z"
+              "WhenOpened": "2025-12-06T05:08:20.167Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -110,106 +112,84 @@
               "RelativeDocumentMoniker": "Function\\Models\\IpInfo.cs",
               "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Models\\IpInfo.cs",
               "RelativeToolTip": "Function\\Models\\IpInfo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvxAAAAApAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAlwCoAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-04T11:02:54.254Z",
+              "WhenOpened": "2025-12-06T08:39:44.492Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "AppConfig.cs",
-              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Models\\AppConfig.cs",
-              "RelativeDocumentMoniker": "Function\\Models\\AppConfig.cs",
-              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Models\\AppConfig.cs",
-              "RelativeToolTip": "Function\\Models\\AppConfig.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-04T11:02:25.573Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "App.xaml",
-              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\App.xaml",
-              "RelativeDocumentMoniker": "Function\\App.xaml",
-              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\App.xaml",
-              "RelativeToolTip": "Function\\App.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-04T10:47:16.287Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "DataColor.cs",
-              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Models\\DataColor.cs",
-              "RelativeDocumentMoniker": "Function\\Models\\DataColor.cs",
-              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Models\\DataColor.cs",
-              "RelativeToolTip": "Function\\Models\\DataColor.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-04T10:43:57.862Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "SettingsViewModel.cs",
-              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\ViewModels\\Pages\\SettingsViewModel.cs",
-              "RelativeDocumentMoniker": "Function\\ViewModels\\Pages\\SettingsViewModel.cs",
-              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\ViewModels\\Pages\\SettingsViewModel.cs",
-              "RelativeToolTip": "Function\\ViewModels\\Pages\\SettingsViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-04T10:18:42.983Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "DashboardViewModel.cs",
-              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\ViewModels\\Pages\\DashboardViewModel.cs",
-              "RelativeDocumentMoniker": "Function\\ViewModels\\Pages\\DashboardViewModel.cs",
-              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\ViewModels\\Pages\\DashboardViewModel.cs",
-              "RelativeToolTip": "Function\\ViewModels\\Pages\\DashboardViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-04T10:08:20.088Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DataViewModel.cs",
-              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\ViewModels\\Pages\\DataViewModel.cs",
-              "RelativeDocumentMoniker": "Function\\ViewModels\\Pages\\DataViewModel.cs",
-              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\ViewModels\\Pages\\DataViewModel.cs",
-              "RelativeToolTip": "Function\\ViewModels\\Pages\\DataViewModel.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABcAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-04T09:53:46.476Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 1,
               "Title": "SettingsPage.xaml",
               "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Views\\Pages\\SettingsPage.xaml",
               "RelativeDocumentMoniker": "Function\\Views\\Pages\\SettingsPage.xaml",
               "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Views\\Pages\\SettingsPage.xaml",
               "RelativeToolTip": "Function\\Views\\Pages\\SettingsPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-04T09:14:14.785Z"
+              "WhenOpened": "2025-12-06T05:08:13.602Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
+              "Title": "EditDataDia.xaml.cs",
+              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Views\\Dialog\\EditDataDia.xaml.cs",
+              "RelativeDocumentMoniker": "Function\\Views\\Dialog\\EditDataDia.xaml.cs",
+              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Views\\Dialog\\EditDataDia.xaml.cs",
+              "RelativeToolTip": "Function\\Views\\Dialog\\EditDataDia.xaml.cs",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAewEgAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T05:07:48.414Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EditDataDia.xaml",
+              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Views\\Dialog\\EditDataDia.xaml",
+              "RelativeDocumentMoniker": "Function\\Views\\Dialog\\EditDataDia.xaml",
+              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Views\\Dialog\\EditDataDia.xaml",
+              "RelativeToolTip": "Function\\Views\\Dialog\\EditDataDia.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-12-06T11:39:46.61Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "LiteDbHelpers.cs",
+              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Helpers\\LiteDbHelpers.cs",
+              "RelativeDocumentMoniker": "Function\\Helpers\\LiteDbHelpers.cs",
+              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Helpers\\LiteDbHelpers.cs",
+              "RelativeToolTip": "Function\\Helpers\\LiteDbHelpers.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAWwEUAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T05:29:40.246Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "DataPage.xaml",
               "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Views\\Pages\\DataPage.xaml",
               "RelativeDocumentMoniker": "Function\\Views\\Pages\\DataPage.xaml",
               "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Views\\Pages\\DataPage.xaml",
               "RelativeToolTip": "Function\\Views\\Pages\\DataPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-04T09:05:07.165Z",
+              "WhenOpened": "2025-12-06T05:37:42.596Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "INetworkDataService.cs",
+              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Services\\INetworkDataService.cs",
+              "RelativeDocumentMoniker": "Function\\Services\\INetworkDataService.cs",
+              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Services\\INetworkDataService.cs",
+              "RelativeToolTip": "Function\\Services\\INetworkDataService.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAuwBYAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T08:43:08.845Z",
               "EditorCaption": ""
             },
             {
@@ -221,42 +201,122 @@
               "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Views\\Pages\\DashboardPage.xaml",
               "RelativeToolTip": "Function\\Views\\Pages\\DashboardPage.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-04T09:05:00.206Z"
+              "WhenOpened": "2025-12-06T05:43:33.995Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "MainWindowViewModel.cs",
-              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\ViewModels\\Windows\\MainWindowViewModel.cs",
-              "RelativeDocumentMoniker": "Function\\ViewModels\\Windows\\MainWindowViewModel.cs",
-              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\ViewModels\\Windows\\MainWindowViewModel.cs",
-              "RelativeToolTip": "Function\\ViewModels\\Windows\\MainWindowViewModel.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAhAAAAAAAAAA==",
+              "DocumentIndex": 11,
+              "Title": "XamlReader.cs",
+              "DocumentMoniker": "C:\\Users\\moumou\\AppData\\Local\\Temp\\.vsdbgsrc\\7c0c2bba808e0f2b7a12b62178b5221c12a0421a503777ec5b37acafcb496885\\XamlReader.cs",
+              "ToolTip": "C:\\Users\\moumou\\AppData\\Local\\Temp\\.vsdbgsrc\\7c0c2bba808e0f2b7a12b62178b5221c12a0421a503777ec5b37acafcb496885\\XamlReader.cs [\u53EA\u8BFB]",
+              "ViewState": "AgIAAJUBAAAAAAAAAAAkwKIBAAACAAAAAQAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-04T08:56:13.154Z"
+              "WhenOpened": "2025-12-06T07:32:54.783Z",
+              "EditorCaption": " [\u53EA\u8BFB]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "DashboardPage.xaml.cs",
+              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Views\\Pages\\DashboardPage.xaml.cs",
+              "RelativeDocumentMoniker": "Function\\Views\\Pages\\DashboardPage.xaml.cs",
+              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Views\\Pages\\DashboardPage.xaml.cs",
+              "RelativeToolTip": "Function\\Views\\Pages\\DashboardPage.xaml.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAwBUAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T07:27:35.005Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Views\\Windows\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "Function\\Views\\Windows\\MainWindow.xaml.cs",
-              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Views\\Windows\\MainWindow.xaml.cs",
-              "RelativeToolTip": "Function\\Views\\Windows\\MainWindow.xaml.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAADoAAAAAAAAAAAAAAA==",
+              "Title": "DashboardViewModel.cs",
+              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\ViewModels\\Pages\\DashboardViewModel.cs",
+              "RelativeDocumentMoniker": "Function\\ViewModels\\Pages\\DashboardViewModel.cs",
+              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\ViewModels\\Pages\\DashboardViewModel.cs",
+              "RelativeToolTip": "Function\\ViewModels\\Pages\\DashboardViewModel.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAUwBIAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-04T08:55:52.709Z"
+              "WhenOpened": "2025-12-06T07:00:53.148Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 12,
+              "Title": "AppConfig.cs",
+              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Models\\AppConfig.cs",
+              "RelativeDocumentMoniker": "Function\\Models\\AppConfig.cs",
+              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Models\\AppConfig.cs",
+              "RelativeToolTip": "Function\\Models\\AppConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T07:03:55.296Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "GenApp.cs",
+              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Models\\GenApp.cs",
+              "RelativeDocumentMoniker": "Function\\Models\\GenApp.cs",
+              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Models\\GenApp.cs",
+              "RelativeToolTip": "Function\\Models\\GenApp.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwoAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T07:01:39.478Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "EditDataViewModel.cs",
+              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\ViewModels\\Pages\\EditDataViewModel.cs",
+              "RelativeDocumentMoniker": "Function\\ViewModels\\Pages\\EditDataViewModel.cs",
+              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\ViewModels\\Pages\\EditDataViewModel.cs",
+              "RelativeToolTip": "Function\\ViewModels\\Pages\\EditDataViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T06:18:25.303Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "DataViewModel.cs",
+              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\ViewModels\\Pages\\DataViewModel.cs",
+              "RelativeDocumentMoniker": "Function\\ViewModels\\Pages\\DataViewModel.cs",
+              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\ViewModels\\Pages\\DataViewModel.cs",
+              "RelativeToolTip": "Function\\ViewModels\\Pages\\DataViewModel.cs",
+              "ViewState": "AgIAAN4AAAAAAAAAAAAcwOgAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T05:54:43.532Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Views\\Windows\\MainWindow.xaml",
               "RelativeDocumentMoniker": "Function\\Views\\Windows\\MainWindow.xaml",
               "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Views\\Windows\\MainWindow.xaml",
               "RelativeToolTip": "Function\\Views\\Windows\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-12-04T08:55:50.468Z"
+              "WhenOpened": "2025-12-06T05:08:09.428Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Views\\Windows\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "Function\\Views\\Windows\\MainWindow.xaml.cs",
+              "ToolTip": "E:\\Desktop\\wpf ip\\Process\\Function\\Function\\Views\\Windows\\MainWindow.xaml.cs",
+              "RelativeToolTip": "Function\\Views\\Windows\\MainWindow.xaml.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-06T05:07:44.204Z",
+              "EditorCaption": ""
             }
           ]
         }

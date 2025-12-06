@@ -1,4 +1,6 @@
 ﻿using Function.ViewModels.Pages;
+using Microsoft.Extensions.DependencyInjection;
+using Wpf.Ui;
 using Wpf.Ui.Abstractions.Controls;
 
 namespace Function.Views.Pages
@@ -13,6 +15,10 @@ namespace Function.Views.Pages
             DataContext = this;
 
             InitializeComponent();
+
+           
         }
+
+       
     }
 }

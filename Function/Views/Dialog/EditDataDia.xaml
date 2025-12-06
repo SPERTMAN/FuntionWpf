@@ -1,0 +1,81 @@
+﻿<ui:FluentWindow x:Class="Function.Views.Pages.EditDataDia"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Function.Views.Pages"
+      mc:Ignorable="d" 
+      xmlns:models="clr-namespace:Function.Models"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      Height="450" Width="400"
+      Title="EditData"
+      WindowStartupLocation="CenterOwner"
+      ResizeMode="NoResize"
+      ExtendsContentIntoTitleBar="True"
+      WindowBackdropType="Mica"
+      >
+
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <!-- 表单区域 -->
+            <RowDefinition Height="Auto" />
+            <!-- 按钮区域 -->
+        </Grid.RowDefinitions>
+        <ui:TextBlock
+          FontTypography="Title"
+          Name="TitleTextBlock"
+          Foreground="#FFFFFF"
+          Text="Edit" />
+        <StackPanel Grid.Row="0" VerticalAlignment="Center" >
+            <!-- 备注 -->
+            <ui:TextBox x:Name="TxtRemarks" 
+                Text="备注信息" 
+                PlaceholderText="例如: 办公室电脑"
+                Icon="{ui:SymbolIcon Edit24}"/>
+            <!-- IP 地址输入框 -->
+            <ui:TextBox x:Name="TxtIp" 
+                        Text="192.168.0.1" 
+                        PlaceholderText="例如: 192.168.1.10"
+                        Icon="{ui:SymbolIcon Globe24}"
+                        ClearButtonEnabled="True"/>
+
+            <!-- 子网掩码 -->
+            <ui:TextBox x:Name="TxtSubnet" 
+                        Text="255.255.255.0" 
+                        PlaceholderText="例如: 255.255.255.0"
+                        Icon="{ui:SymbolIcon Grid24}"/>
+            <!-- 网关 -->
+            <ui:TextBox x:Name="TxtGateway" 
+                 Text="0.0.0.0" 
+                 PlaceholderText="例如: 192.168.0.1"
+                 Icon="{ui:SymbolIcon Globe24}"/>
+
+
+        </StackPanel>
+
+        <!-- 底部按钮 -->
+        <Grid Grid.Row="1" Margin="0,20,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <ui:Button Content="取消" 
+                       Appearance="Secondary" 
+                       HorizontalAlignment="Stretch" 
+                       Margin="0,0,5,0"
+                       Click="BtnCancel_Click"
+                       
+                       />
+
+            <ui:Button Content="保存" 
+                       Appearance="Primary" 
+                       Grid.Column="1"
+                       HorizontalAlignment="Stretch" 
+                       Margin="5,0,0,0"
+                       Click="BtnSave_Click"
+                      />
+        </Grid>
+    </Grid>
+</ui:FluentWindow>

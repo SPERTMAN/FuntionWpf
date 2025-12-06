@@ -18,34 +18,130 @@
     mc:Ignorable="d">
     <Page.Resources>
         <helpers:EnumToBooleanConverter x:Key="EnumToBooleanConverter" />
+
     </Page.Resources>
 
     <StackPanel>
-        <TextBlock
-            FontSize="20"
-            FontWeight="Medium"
-            Text="Personalization" />
-        <TextBlock Margin="0,12,0,0" Text="Theme" />
-        <RadioButton
-            Margin="0,12,0,0"
-            Command="{Binding ViewModel.ChangeThemeCommand, Mode=OneWay}"
-            CommandParameter="theme_light"
-            Content="Light"
-            GroupName="themeSelect"
-            IsChecked="{Binding ViewModel.CurrentTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Light, Mode=OneWay}" />
-        <RadioButton
-            Margin="0,8,0,0"
-            Command="{Binding ViewModel.ChangeThemeCommand, Mode=OneWay}"
-            CommandParameter="theme_dark"
-            Content="Dark"
-            GroupName="themeSelect"
-            IsChecked="{Binding ViewModel.CurrentTheme, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=Dark, Mode=OneWay}" />
+        
+        <StackPanel  Orientation="Horizontal">
+            <ui:Button  Content="打开Cmd" Appearance="Primary" 
+                       Command="{Binding ViewModel.OpenCmdCommand}"
+                        ></ui:Button>
+            <ui:Button  Margin="10,0,0,0" Content="自动获取" Name="AutoSet" 
+                        Command="{Binding ViewModel.SetDhcpIncrementCommand}"
+                        Appearance="Primary"></ui:Button>
+            <ui:Button  Margin="10,0,0,0" Content="打开远程桌面" 
+                        ToolTipService.ToolTip="此功能未开放"
+                        Command="{Binding ViewModel.OpenMstscCommand}"
+                        Appearance="Primary"></ui:Button>
 
-        <TextBlock
-            Margin="0,24,0,0"
-            FontSize="20"
-            FontWeight="Medium"
-            Text="About Function" />
-        <TextBlock Margin="0,12,0,0" Text="{Binding ViewModel.AppVersion, Mode=OneWay}" />
+        </StackPanel>
+        <TabControl Margin="0,8,0,0" Background="Gray" Height="402">
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <ui:SymbolIcon Margin="0,0,6,0" Symbol="XboxConsole24" />
+                        <TextBlock Text="IP" />
+                    </StackPanel>
+                </TabItem.Header>
+
+                <DataGrid Name="IpDataGrid" Margin="10,0,10,0" Background="Gray"  AutoGenerateColumns="False"
+                 LoadingRow="MyDataGrid_LoadingRow" IsReadOnly="True"
+                 ItemsSource="{Binding ViewModel.IpInfoConfigs, Mode=TwoWay}" Height="461" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="名称" Binding="{Binding remark, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="IP地址" Binding="{Binding Ip, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="子网" Binding="{Binding SubNet, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="网关" Binding="{Binding GetWay, Mode=TwoWay}" />
+                    </DataGrid.Columns>
+                    <DataGrid.ContextMenu>
+                        <ContextMenu
+                                DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}"
+>
+                            <MenuItem Header="设置" 
+                                  Command="{Binding ViewModel.SetStaticIpIncrementCommand}"
+                                  CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+          />
+                            <MenuItem Header="添加" Command="{Binding ViewModel.OpenEditorIncrementCommand}"
+                                CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+             />
+                            <MenuItem Header="编辑" Command="{Binding ViewModel.OpenEditorEditIncrementCommand}"
+                                 CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}" />
+                            <MenuItem Header="删除" Command="{Binding ViewModel.DeleteIpIncrementCommand}"
+                             CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+ />
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                    <DataGrid.InputBindings>
+                        <MouseBinding MouseAction="LeftDoubleClick" 
+  Command="{Binding ViewModel.SetStaticIpIncrementCommand}" 
+  CommandParameter="{Binding ElementName=IpDataGrid, Path=SelectedItem}" />
+                    </DataGrid.InputBindings>
+                    <!-- 2. 这里定义“行”的样式，覆盖上面的菜单 -->
+                    <!-- 这是给【空白处】用的全局菜单 -->
+
+                </DataGrid>
+
+
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <ui:SymbolIcon Margin="0,0,6,0" Symbol="XboxConsole24" />
+                        <TextBlock Text="远程桌面" />
+                    </StackPanel>
+                </TabItem.Header>
+                <DataGrid Name="IpDataGrid2" Margin="10" Background="Gray"  AutoGenerateColumns="False"
+              LoadingRow="MyDataGrid_LoadingRow" IsReadOnly="True"
+              ItemsSource="{Binding ViewModel.RomoteInfos, Mode=TwoWay}" Height="449" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="名称" Binding="{Binding remark, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="IP地址" Binding="{Binding Ip, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="用户名" Binding="{Binding UserName, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="密码" Binding="{Binding PassWord, Mode=TwoWay}" />
+                    </DataGrid.Columns>
+                    <DataGrid.ContextMenu>
+                        <ContextMenu
+                         DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}"
+                         >
+                            <MenuItem Header="设置" 
+                       Command="{Binding ViewModel.RemoteConIncrementCommand}"
+                       CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                       />
+                            <MenuItem Header="添加" Command="{Binding ViewModel.AddRometeIncrementCommand}"
+                          CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                          />
+                            <MenuItem Header="编辑" Command="{Binding ViewModel.OpenEditorEditIncrementCommand}"
+                            CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
+                            <MenuItem Header="删除" Command="{Binding ViewModel.DeleteIpIncrementCommand}"
+              CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+              />
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                    <DataGrid.InputBindings>
+                        <MouseBinding MouseAction="LeftDoubleClick" 
+                       Command="{Binding ViewModel.SetStaticIpIncrementCommand}" 
+                       CommandParameter="{Binding ElementName=IpDataGrid2, Path=SelectedItem}" />
+                    </DataGrid.InputBindings>
+                    <!-- 2. 这里定义“行”的样式，覆盖上面的菜单 -->
+                    <!-- 这是给【空白处】用的全局菜单 -->
+
+                </DataGrid>
+
+            </TabItem>
+            <TabItem >
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal">
+                        <ui:SymbolIcon Margin="0,0,6,0" Symbol="StoreMicrosoft16" />
+                        <TextBlock Text="远程文件" />
+                    </StackPanel>
+                </TabItem.Header>
+                <Grid>
+                    <TextBlock Margin="12" Text="Is a lie." />
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <ProgressBar Visibility="{Binding ViewModel.ProRingVis }" IsIndeterminate="True"  />
     </StackPanel>
+   
 </Page>
