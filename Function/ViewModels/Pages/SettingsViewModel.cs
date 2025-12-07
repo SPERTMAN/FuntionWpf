@@ -2,6 +2,7 @@
 using Function.Models;
 using Function.Services;
 using Function.Views.Pages;
+using Microsoft.Extensions.Configuration;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Management;
@@ -17,7 +18,7 @@ using Wpf.Ui.Controls;
 namespace Function.ViewModels.Pages
 {
     public partial class SettingsViewModel(ISnackbarService snackbarService,
-        INetworkDataService dataService) : ObservableObject, INavigationAware
+        INetworkDataService dataService, IConfiguration config) : ObservableObject, INavigationAware
     {
         // 导入 Windows 系统库 iphlpapi.dll 中的 SendARP 函数。
         // 这是 P/Invoke 的核心，用于在底层发送 ARP 请求。
@@ -41,7 +42,7 @@ namespace Function.ViewModels.Pages
         [ObservableProperty]
         private ApplicationTheme _currentTheme = ApplicationTheme.Unknown;
 
-        private string _adapterName = "以太网";
+        private string _adapterName = config["NetWorkName"];
         public Task OnNavigatedToAsync()
         {
             if (!_isInitialized)
@@ -286,8 +287,16 @@ namespace Function.ViewModels.Pages
 
                     // 1. 设置 IP 地址和子网掩码
                     ManagementBaseObject newIP = adapter.GetMethodParameters("EnableStatic");
-                    newIP["IPAddress"] = new string[] { clickedItem.Ip };
-                    newIP["SubnetMask"] = new string[] { clickedItem.SubNet };
+                    //if (clickedItem.GetWay == "0.0.0.0")
+                    //{
+                    //    newIP["IPAddress"] = new string[] { clickedItem.Ip };
+                    //    newIP["SubnetMask"] = new string[] { "255.255.255.125" };
+                    //    adapter.InvokeMethod("EnableStatic", newIP, null);
+
+                    //    await Task.Delay(500);
+                    //}
+                        newIP["IPAddress"] = new string[] { clickedItem.Ip };
+                        newIP["SubnetMask"] = new string[] { clickedItem.SubNet };
 
                     uint result = (uint)adapter.InvokeMethod("EnableStatic", newIP, null)["ReturnValue"];
                     if (result != 0)
@@ -296,48 +305,64 @@ namespace Function.ViewModels.Pages
                        
                         return;
                     }
-                    else
+                  
+                    // 2. 设置默认网关
+
+                    ManagementBaseObject newGateway = adapter.GetMethodParameters("SetGateways");
+                    
+                    if (clickedItem.GetWay == "0.0.0.0")
                     {
-                        if (clickedItem.GetWay=="0.0.0.0")
+                        // 如果您只想清除网关，保留其他静态 IP：
+                        // 正确的 netsh 命令：重新设置 IP，但将 gateway 参数设为 none
+                        string arguments = $"interface ip set address name=\"{_adapterName}\" static {clickedItem.Ip} {clickedItem.SubNet} none";
+
+                        ProcessStartInfo psi = new ProcessStartInfo("netsh", arguments)
                         {
-                            ProRingVis = Visibility.Hidden;
-                            SetTaskPromat("设置成功", $"{result}", ControlAppearance.Success);
+                            CreateNoWindow = true,
+                            UseShellExecute = false,
+                            RedirectStandardOutput = true
+                        };
 
-                            await Task.Delay(500);
-                            GetNetworkAdapter(_adapterName);
-                            var ipProps = _networkInterface.GetIPProperties();
-                            // 3. 找所有的单播地址
-                            foreach (var ipInfo in ipProps.UnicastAddresses)
-                            {
-                                // 找到我们刚刚设置的那个 IP
-                                if (ipInfo.Address.ToString() == clickedItem.Ip)
-                                {
-                                    // 4. 核心：检查状态
-                                    // Windows 10/11 会把冲突的 IP 标记为 Duplicate
-                                    if (ipInfo.DuplicateAddressDetectionState == DuplicateAddressDetectionState.Duplicate)
-                                    {
-                                        SetTaskPromat("警告", $"{clickedItem.Ip}存在冲突！！", ControlAppearance.Caution);
-                                        return;
-                                    }
-
-                                    // 如果状态是 Preferred (首选) 或 Tentative (探测中)，说明暂时没问题
-                                }
-                            }
-                           
-                            return;
+                        using (Process process = Process.Start(psi))
+                        {
+                            process.WaitForExit();
+                          
                         }
                     }
-
-                    // 2. 设置默认网关
-                    ManagementBaseObject newGateway = adapter.GetMethodParameters("SetGateways");
-                    newGateway["DefaultIPGateway"] = new string[] { clickedItem.GetWay };
-                    newGateway["GatewayCostMetric"] = new int[] { 1 };
-
-                    result = (uint)adapter.InvokeMethod("SetGateways", newGateway, null)["ReturnValue"];
+                    else
+                    {
+                        newGateway["DefaultIPGateway"] = new string[] { clickedItem.GetWay };
+                        newGateway["GatewayCostMetric"] = new int[] { 1 };
+                        result = (uint)adapter.InvokeMethod("SetGateways", newGateway, null)["ReturnValue"];
+                    }
+                       
                     if (result == 0)
                     {
                         ProRingVis = Visibility.Hidden;
                         SetTaskPromat("IP设置成功", $"{result}", ControlAppearance.Success);
+                        ProRingVis = Visibility.Hidden;
+                        SetTaskPromat("设置成功", $"{result}", ControlAppearance.Success);
+
+                        await Task.Delay(500);
+                        GetNetworkAdapter(_adapterName);
+                        var ipProps = _networkInterface.GetIPProperties();
+                        // 3. 找所有的单播地址
+                        foreach (var ipInfo in ipProps.UnicastAddresses)
+                        {
+                            // 找到我们刚刚设置的那个 IP
+                            if (ipInfo.Address.ToString() == clickedItem.Ip)
+                            {
+                                // 4. 核心：检查状态
+                                // Windows 10/11 会把冲突的 IP 标记为 Duplicate
+                                if (ipInfo.DuplicateAddressDetectionState == DuplicateAddressDetectionState.Duplicate)
+                                {
+                                    SetTaskPromat("警告", $"{clickedItem.Ip}存在冲突！！", ControlAppearance.Caution);
+                                    return;
+                                }
+
+                                // 如果状态是 Preferred (首选) 或 Tentative (探测中)，说明暂时没问题
+                            }
+                        }
                         return;
                     }
                     else

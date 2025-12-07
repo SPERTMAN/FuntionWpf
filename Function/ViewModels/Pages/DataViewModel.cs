@@ -1,4 +1,5 @@
 using Function.Models;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -15,7 +16,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Function.ViewModels.Pages
 {
-    public partial class DataViewModel(ISnackbarService snackbarService) : ObservableObject, INavigationAware
+    public partial class DataViewModel(ISnackbarService snackbarService, IConfiguration config) : ObservableObject, INavigationAware
     {
 
 
@@ -39,7 +40,7 @@ namespace Function.ViewModels.Pages
             return Task.CompletedTask;
         }
 
-
+       
 
         [RelayCommand]
         private void OnCounterIncrement()
@@ -230,7 +231,7 @@ namespace Function.ViewModels.Pages
             foreach (var ni in NetworkInterface.GetAllNetworkInterfaces())
             {
                 // 只要以太网和WiFi
-                if (ni.Name != "以太网")
+                if (ni.Name != config["NetWorkName"])
                     continue;
 
                 var ipProps = ni.GetIPProperties();

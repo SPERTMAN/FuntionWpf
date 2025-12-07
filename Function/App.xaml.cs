@@ -7,6 +7,7 @@ using Function.Views.Windows;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Configuration;
 using System.IO;
 using System.Reflection;
 using System.Windows.Threading;
@@ -27,7 +28,18 @@ namespace Function
         // https://docs.microsoft.com/dotnet/core/extensions/logging
         private static readonly IHost _host = Host
             .CreateDefaultBuilder()
-            .ConfigureAppConfiguration(c => { c.SetBasePath(Path.GetDirectoryName(AppContext.BaseDirectory)); })
+            .ConfigureAppConfiguration(c => {
+
+                // 配置文件路径：bin 目录
+                var basePath = Path.GetDirectoryName(AppContext.BaseDirectory);
+                c.SetBasePath(basePath+@"\Config");
+
+                // 添加 appsettings.json
+                c.AddJsonFile("config.json", optional: false, reloadOnChange: true);
+                c.AddEnvironmentVariables();
+
+            })
+
             .ConfigureServices((context, services) =>
             {
                 services.AddNavigationViewPageProvider();
@@ -54,8 +66,10 @@ namespace Function
                 services.AddSingleton<SettingsPage>();
                 services.AddSingleton<SettingsViewModel>();
 
-                //注册
-                
+                // 注入 IConfiguration 全局可用
+                var configuration = context.Configuration;
+                services.AddSingleton<IConfiguration>(configuration);
+
                 //注册弹窗
                 // 注册 WPF UI 服务
                 services.AddSingleton<ISnackbarService, SnackbarService>();

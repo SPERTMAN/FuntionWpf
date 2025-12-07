@@ -71,7 +71,7 @@ namespace Function.Views.Pages
                     TxtIp.Text = cfg.Ip;
                     TxtSubnet.Text = cfg.SubNet;
                     TxtRemarks.Text = cfg.remark;
-
+                    TxtGateway.Text = cfg.GetWay;
                     // 为了避免修改原对象（万一用户点了取消），我们不直接操作 existingData
                     // 而是把 ID 存下来，或者最后生成一个新的对象
                     ResultDataIp = cfg;
