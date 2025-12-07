@@ -1,4 +1,5 @@
-﻿using Function.Models;
+﻿using Function.Helpers;
+using Function.Models;
 using Function.Services;
 using Function.Views.Pages;
 using System.Collections.ObjectModel;
@@ -20,8 +21,7 @@ namespace Function.ViewModels.Pages
     {
         // 导入 Windows 系统库 iphlpapi.dll 中的 SendARP 函数。
         // 这是 P/Invoke 的核心，用于在底层发送 ARP 请求。
-        [DllImport("iphlpapi.dll", ExactSpelling = true)]
-        private static extern int SendARP(uint DestIP, uint SrcIP, byte[] pMacAddr, ref uint PhyAddrLen);
+       
         // SendARP 函数的返回码，表示成功。
         private const int NO_ERROR = 0;
         private NetworkInterface _networkInterface;
@@ -36,6 +36,8 @@ namespace Function.ViewModels.Pages
         private ObservableCollection<IpInfoConfig> _ipInfoConfigs;//= GenerateProducts();
         [ObservableProperty]
         private ObservableCollection<RomoteInfo> _romoteInfos;//= GenerateProducts();
+        [ObservableProperty]
+        private ObservableCollection<RomoteFile> _romoteFiles;//= GenerateProducts();
         [ObservableProperty]
         private ApplicationTheme _currentTheme = ApplicationTheme.Unknown;
 
@@ -58,6 +60,8 @@ namespace Function.ViewModels.Pages
             IpInfoConfigs = new ObservableCollection<IpInfoConfig>(dataService.GetAll<IpInfoConfig>());
 
             RomoteInfos = new ObservableCollection<RomoteInfo>(dataService.GetAll<RomoteInfo>());
+
+            RomoteFiles = new ObservableCollection<RomoteFile>(dataService.GetAll<RomoteFile>());
             _isInitialized = true;
         }
 
@@ -419,8 +423,14 @@ namespace Function.ViewModels.Pages
                 IpInfoConfigs = new ObservableCollection<IpInfoConfig>(dataService.GetAll<IpInfoConfig>());
                 SetTaskPromat("删除成功", $"已成功删除：{clickedItem.remark}", ControlAppearance.Success);
             }
-           
-           
+            if (parameter is RomoteFile Rfile)
+            {
+                ProRingVis = Visibility.Visible;
+                dataService.Delete(Rfile, Rfile.Id);
+                RomoteFiles = new ObservableCollection<RomoteFile>(dataService.GetAll<RomoteFile>());
+                SetTaskPromat("删除成功", $"已成功删除：{Rfile.remark}", ControlAppearance.Success);
+            }
+
             ProRingVis = Visibility.Hidden;
            
 
@@ -462,6 +472,10 @@ namespace Function.ViewModels.Pages
             {
                 mode = 2;
             }
+            if (parameter is RomoteFile Rfile)
+            {
+                mode = 6;
+            }
             // 这里不能用依赖注入，必须手动 new，因为 item 是运行时才有的数据
             var editor = new EditDataDia(mode, parameter);
             // 设置父窗口（让弹窗在主窗口中间打开）
@@ -488,9 +502,16 @@ namespace Function.ViewModels.Pages
                     text = data.remark;
                     RomoteInfos = new ObservableCollection<RomoteInfo>(dataService.GetAll<RomoteInfo>());
                 }
+                else if (mode == 6)
+                {
+                    var data = editor.ResultDataFile;
+                    // ... 保存逻辑
+                    dataService.Update(data);
+                    text = data.remark;
+                    RomoteFiles = new ObservableCollection<RomoteFile>(dataService.GetAll<RomoteFile>());
+                }
 
-                   
-               
+
 
                 SetTaskPromat("修改成功", $"已成功修改：{text}", ControlAppearance.Success);
             }
@@ -517,12 +538,13 @@ namespace Function.ViewModels.Pages
                 SetTaskPromat("新增成功", $"已成功加入：{data.remark}", ControlAppearance.Success);
             }
         }
+       
         [RelayCommand]
-        private void OnUpdateRometeIncrement(object parameter)
+        private void OnAddRometeFileIncrement(object parameter)
         {
 
             // 这里不能用依赖注入，必须手动 new，因为 item 是运行时才有的数据
-            var editor = new EditDataDia(4);
+            var editor = new EditDataDia(5);
 
             // 设置父窗口（让弹窗在主窗口中间打开）
             editor.Owner = Application.Current.MainWindow;
@@ -531,15 +553,15 @@ namespace Function.ViewModels.Pages
             if (editor.ShowDialog() == true)
             {
                 // 获取结果并处理
-                var data = editor.ResultDataRem;
+                var data = editor.ResultDataFile;
                 // ... 保存逻辑
-                dataService.Update(data);
-                RomoteInfos = new ObservableCollection<RomoteInfo>(dataService.GetAll<RomoteInfo>());
+                dataService.Add<RomoteFile>(data);
+                RomoteFiles = new ObservableCollection<RomoteFile>(dataService.GetAll<RomoteFile>());
 
-                SetTaskPromat("修改成功", $"已成功修改：{data.remark}", ControlAppearance.Success);
+                SetTaskPromat("新增成功", $"已成功加入：{data.remark}", ControlAppearance.Success);
             }
         }
-
+       
         /// <summary>
         /// 远程桌面连接
         /// </summary>
@@ -549,111 +571,43 @@ namespace Function.ViewModels.Pages
         {
             if (parameter == null) return;
 
-            ConnectToRdp(((RomoteInfo)parameter).Ip,
+            NetworkHelper.ConnectToRdp(((RomoteInfo)parameter).Ip,
                 ((RomoteInfo)parameter).UserName,
                 ((RomoteInfo)parameter).PassWord);
 
-
-        }
-
-        public void ConnectToRdp(string ip, string username, string password)
-        {
-            // 1. 准备 cmdkey 命令
-            // 格式: cmdkey /generic:TERMSRV/目标IP /user:用户名 /pass:密码
-            // 注意: TERMSRV/ 是必须的前缀，告诉系统这是远程桌面的凭据
-            string cmdKeyArgs = $"/generic:TERMSRV/{ip} /user:{username} /pass:{password}";
-
-            // 2. 执行 cmdkey 添加凭据 (隐藏窗口执行)
-            ProcessStartInfo cmdKeyProcess = new ProcessStartInfo("cmdkey", cmdKeyArgs)
-            {
-                WindowStyle = ProcessWindowStyle.Hidden, // 不显示黑窗口
-                CreateNoWindow = true,
-                UseShellExecute = false
-            };
-            Process.Start(cmdKeyProcess)?.WaitForExit(); // 等待凭据添加完成
-
-            // 3. 启动远程桌面
-            // /v:IP 指定目标
-            // /admin (可选) 以管理员控制台模式连接
-            // /f (可选) 全屏模式
-            Process.Start("mstsc.exe", $"/v:{ip}");
-        }
-
-        /// <summary>
-        /// 检查网络上是否有设备正在使用指定的 IP 地址。
-        /// </summary>
-        /// <param name="ipAddress">要检查的 IP 地址字符串。</param>
-        /// <returns>如果收到 MAC 地址回复，返回 True (存在冲突或 IP 正在被使用)；否则返回 False。</returns>
-        public static bool IsIpInUseByArp(string ipAddress)
-        {
-            // 1. 验证 IP 地址格式
-            if (!IPAddress.TryParse(ipAddress, out IPAddress ip))
-            {
-                throw new ArgumentException("IP 地址格式无效。", nameof(ipAddress));
-            }
-            // 1. 【优先】尝试 Ping (最快，且支持跨网段)
-            // 即使对方有防火墙，如果不在同一网段，Ping 是唯一的检测手段
-            if (PingCheck(ip))
-            {
-                return true; // Ping 通了，肯定被占用了
-            }
-
-            // 2. 【保底】尝试 ARP (专治同网段防火墙)
-            // 如果 Ping 不通，且我们在同一个网段，ARP 可以穿透防火墙检测
-            // 如果 SendARP 返回 67，说明不在同网段，这里会返回 false，这是符合预期的
-            if (ArpCheck(ip))
-            {
-                return true; // ARP 查到了 MAC，肯定被占用了
-            }
-
-            // 3. 都没反应，大概率是空闲的
-            return false;
-          
-           
             
         }
-        // --- Ping 检测逻辑 ---
-        private static bool PingCheck(IPAddress ip)
+
+        [RelayCommand]
+        private async Task OnRemoteConFileIncrement(object parameter)
         {
-            try
+            if (parameter == null) return;
+
+            await Task.Run(async () =>
             {
-                using (var p = new Ping())
+                ProRingVis = Visibility.Visible;
+                string path = $@"\\{((RomoteFile)parameter).Ip}\";
+                if (NetworkHelper.ConnectFile(path,
+                    ((RomoteFile)parameter).UserName,
+                    ((RomoteFile)parameter).PassWord) != 0)
                 {
-                    // 超时设置短一点 (200ms)，提高体验
-                    var reply = p.Send(ip, 200);
-                    return reply.Status == IPStatus.Success;
+                    // 2. 连接成功后，直接用 Explorer 打开这个路径
+                    // Process.Start("explorer.exe", ((RomoteFile)parameter).Ip);
+
+                    SetTaskPromat("连接失败", "网络连接失败或者账号密码错误", ControlAppearance.Danger);
                 }
-            }
-            catch
-            {
-                return false;
-            }
+                else
+                {
+                    // 2. 连接成功后，直接用 Explorer 打开这个路径
+                    Process.Start("explorer.exe", path);
+                }
+                ProRingVis = Visibility.Hidden;
+            });
+            
+
+
         }
 
-        // --- ARP 检测逻辑 ---
-        private static bool ArpCheck(IPAddress ip)
-        {
-            byte[] addressBytes = ip.GetAddressBytes();
-            uint destIp = BitConverter.ToUInt32(addressBytes, 0);
 
-            byte[] macAddr = new byte[6];
-            uint macAddrLen = (uint)macAddr.Length;
-
-            // SrcIP 传 0，让系统自动选择网卡
-            int result = SendARP(destIp, 0, macAddr, ref macAddrLen);
-
-            // result = 0 表示成功 (NO_ERROR)
-            // result = 67 表示 ERROR_BAD_NET_NAME (不在同网段，无法 ARP)
-            // result = 1168 表示 ERROR_NOT_FOUND (没人回应 ARP，即 IP 空闲)
-            if (result == 0)
-            {
-                return true;
-            }
-
-            // 调试用：你可以在这里输出 result 看看具体错误码
-            // System.Diagnostics.Debug.WriteLine($"ARP Failed: {result}");
-
-            return false;
-        }
     }
 }

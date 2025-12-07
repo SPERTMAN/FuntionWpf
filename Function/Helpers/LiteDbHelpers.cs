@@ -204,7 +204,7 @@ namespace Function.Helpers
                 {
                     cmd.CommandText =
                   @"
-                       UPDATE RomoteInfo 
+                       UPDATE RomoteFile 
                         SET IpAddress = $ip, 
                             UserName = $userName, 
                             PassWord = $passWord, 

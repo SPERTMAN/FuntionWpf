@@ -28,11 +28,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Assets\WinUiGallery\Button.png" />
+    <None Remove="Assets\WinUiGallery\Flyout.png" />
+    <None Remove="Assets\WinUiGallery\MenuBar.png" />
     <None Remove="Assets\wpfui-icon-256.png" />
     <None Remove="Assets\wpfui-icon-1024.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\WinUiGallery\Button.png" />
+    <Resource Include="Assets\WinUiGallery\Flyout.png" />
+    <Resource Include="Assets\WinUiGallery\MenuBar.png" />
     <Resource Include="Assets\wpfui-icon-256.png" />
     <Resource Include="Assets\wpfui-icon-1024.png" />
   </ItemGroup>

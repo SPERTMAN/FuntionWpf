@@ -114,13 +114,13 @@
                             <MenuItem Header="编辑" Command="{Binding ViewModel.OpenEditorEditIncrementCommand}"
                             CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
                             <MenuItem Header="删除" Command="{Binding ViewModel.DeleteIpIncrementCommand}"
-              CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
-              />
+                              CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                              />    
                         </ContextMenu>
                     </DataGrid.ContextMenu>
                     <DataGrid.InputBindings>
                         <MouseBinding MouseAction="LeftDoubleClick" 
-                       Command="{Binding ViewModel.SetStaticIpIncrementCommand}" 
+                       Command="{Binding ViewModel.RemoteConIncrementCommand}" 
                        CommandParameter="{Binding ElementName=IpDataGrid2, Path=SelectedItem}" />
                     </DataGrid.InputBindings>
                     <!-- 2. 这里定义“行”的样式，覆盖上面的菜单 -->
@@ -136,9 +136,42 @@
                         <TextBlock Text="远程文件" />
                     </StackPanel>
                 </TabItem.Header>
-                <Grid>
-                    <TextBlock Margin="12" Text="Is a lie." />
-                </Grid>
+                <DataGrid Name="IpDataGrid3" Margin="10" Background="Gray"  AutoGenerateColumns="False"
+                LoadingRow="MyDataGrid_LoadingRow" IsReadOnly="True"
+                ItemsSource="{Binding ViewModel.RomoteFiles, Mode=TwoWay}" Height="449" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="名称" Binding="{Binding remark, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="IP地址" Binding="{Binding Ip, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="用户名" Binding="{Binding UserName, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="密码" Binding="{Binding PassWord, Mode=TwoWay}" />
+                    </DataGrid.Columns>
+                    <DataGrid.ContextMenu>
+                        <ContextMenu
+           DataContext="{Binding PlacementTarget.DataContext, RelativeSource={RelativeSource Self}}"
+           >
+                            <MenuItem Header="设置" 
+         Command="{Binding ViewModel.RemoteConFileIncrementCommand}"
+         CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+         />
+                            <MenuItem Header="添加" Command="{Binding ViewModel.AddRometeFileIncrementCommand}"
+            CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+            />
+                            <MenuItem Header="编辑" Command="{Binding ViewModel.OpenEditorEditIncrementCommand}"
+              CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}"/>
+                            <MenuItem Header="删除" Command="{Binding ViewModel.DeleteIpIncrementCommand}"
+                CommandParameter="{Binding PlacementTarget.SelectedItem, RelativeSource={RelativeSource AncestorType=ContextMenu}}"
+                />
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                    <DataGrid.InputBindings>
+                        <MouseBinding MouseAction="LeftDoubleClick" 
+         Command="{Binding ViewModel.RemoteConFileIncrementCommand}" 
+         CommandParameter="{Binding ElementName=IpDataGrid3, Path=SelectedItem}" />
+                    </DataGrid.InputBindings>
+                    <!-- 2. 这里定义“行”的样式，覆盖上面的菜单 -->
+                    <!-- 这是给【空白处】用的全局菜单 -->
+
+                </DataGrid>
             </TabItem>
         </TabControl>
         <ProgressBar Visibility="{Binding ViewModel.ProRingVis }" IsIndeterminate="True"  />

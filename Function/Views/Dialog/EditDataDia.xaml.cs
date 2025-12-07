@@ -47,6 +47,17 @@ namespace Function.Views.Pages
                 TxtGateway.PlaceholderText = "远程的密码";
                 return;
             }
+            else if (_mode == 5)
+            {
+                ResultDataFile = new RomoteFile();
+                TitleTextBlock.Text = "添加";
+                TitleTextBlock.FontTypography = FontTypography.BodyStrong;
+                TxtSubnet.Text = "Admin";
+                TxtSubnet.PlaceholderText = "远程的用户名";
+                TxtGateway.Text = "123456";
+                TxtGateway.PlaceholderText = "远程的密码";
+                return;
+            }
             else
             {
                 TitleTextBlock.Text = "编辑";
@@ -76,6 +87,18 @@ namespace Function.Views.Pages
                     // 为了避免修改原对象（万一用户点了取消），我们不直接操作 existingData
                     // 而是把 ID 存下来，或者最后生成一个新的对象
                     ResultDataRem = rem;
+                }
+                else if (existingData is RomoteFile Rfile)
+                {
+                    // === 编辑模式：回显数据 ===
+                    TxtIp.Text = Rfile.Ip;
+                    TxtSubnet.Text = Rfile.UserName;
+                    TxtGateway.Text = Rfile.PassWord;
+                    TxtRemarks.Text = Rfile.remark;
+
+                    // 为了避免修改原对象（万一用户点了取消），我们不直接操作 existingData
+                    // 而是把 ID 存下来，或者最后生成一个新的对象
+                    ResultDataFile = Rfile;
                 }
 
 
@@ -130,7 +153,19 @@ namespace Function.Views.Pages
                 ResultDataRem.remark = remarkInput;
                 ResultDataRem.PassWord = getWayInput;
             }
-
+            else if (_mode <= 6)
+            {
+                // 3. 校验 用户名 (可选，逻辑同上)
+                if (string.IsNullOrEmpty(subnetInput))
+                {
+                    System.Windows.MessageBox.Show("用户名不能为空", "格式错误");
+                    return; // 阻止保存
+                }
+                ResultDataFile.Ip = ipInput;
+                ResultDataFile.UserName = subnetInput;
+                ResultDataFile.remark = remarkInput;
+                ResultDataFile.PassWord = getWayInput;
+            }
 
 
             // 5. 设置 DialogResult 为 true 并关闭

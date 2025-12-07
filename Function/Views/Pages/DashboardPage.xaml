@@ -20,7 +20,7 @@
 
     <Grid VerticalAlignment="Top">
         
-        <TabControl Margin="0,8,0,0" Background="Gray">
+        <TabControl Margin="0,0,0,0" >
             <TabItem>
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal">
@@ -28,20 +28,149 @@
                         <TextBlock Text="日常办公" />
                     </StackPanel>
                 </TabItem.Header>
+                <Grid Grid.Row="1" Margin="0,24,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-                <ui:ListView
-                
-                 d:ItemsSource="{d:SampleData ItemCount=1}"
-                 ItemsSource="{Binding ViewModel.BasicListViewItems, Mode=TwoWay}"
-                 SelectedIndex="2"
-                 SelectionMode="Single">
-                    <ui:ListView.ItemTemplate>
-                        <DataTemplate >
-                            <TextBlock Margin="8,4" Text="{Binding AppName}" />
-                            
-                        </DataTemplate>
-                    </ui:ListView.ItemTemplate>
-                </ui:ListView>
+                    <ui:CardAction
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Margin="0,0,4,0"
+                    Padding="0"
+                    VerticalAlignment="Stretch"
+                    
+                    IsChevronVisible="False">   
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image
+                            Width="60"
+                            Margin="24,0,0,0"
+                            Source="pack://application:,,,/Assets/WinUiGallery/Button.png" />
+
+                            <StackPanel
+                            Grid.Column="1"
+                            Margin="24"
+                            VerticalAlignment="Center">
+                                <ui:TextBlock
+                                Margin="0"
+                                FontTypography="BodyStrong"
+                                Text="Ip Fun"
+                                TextWrapping="WrapWithOverflow" />
+                                <ui:TextBlock
+                                Appearance="Secondary"
+                                Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                                Text="Seting, Ping, Remote..."
+                                TextWrapping="WrapWithOverflow" />  
+                            </StackPanel>
+                        </Grid>
+                    </ui:CardAction>
+
+                    <ui:CardAction
+        Grid.Row="0"
+        Grid.Column="1"
+        Margin="4,0,4,0"
+        Padding="0"
+        VerticalAlignment="Stretch"
+       
+        IsChevronVisible="False">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image
+                                Width="60"
+                                Margin="24,0,0,0"
+                                Source="pack://application:,,,/Assets/WinUiGallery/Flyout.png" />   
+
+                            <StackPanel
+                Grid.Column="1"
+                Margin="24"
+                VerticalAlignment="Center">
+                                <ui:TextBlock
+                    Margin="0"
+                    FontTypography="BodyStrong"
+                    Text="Help  &amp; General"
+                    TextWrapping="WrapWithOverflow" />
+                                <ui:TextBlock
+                    Appearance="Secondary"
+                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                    Text="Link,
+                          Soft."
+                    TextWrapping="WrapWithOverflow" />
+                            </StackPanel>
+                        </Grid>
+                    </ui:CardAction>
+
+                    <ui:CardAction
+        Grid.Row="0"
+        Grid.Column="2"
+        Margin="4,0,4,0"
+        Padding="0"
+        VerticalAlignment="Stretch"
+       
+        IsChevronVisible="False">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image
+                Width="60"
+                Margin="24,0,0,0"
+                Source="pack://application:,,,/Assets/WinUiGallery/MenuBar.png" />
+
+                            <StackPanel
+                Grid.Column="1"
+                Margin="24"
+                VerticalAlignment="Center">
+                                <ui:TextBlock
+                    Margin="0"
+                    FontTypography="BodyStrong"
+                    Text="Navigation"
+                    TextWrapping="WrapWithOverflow" />
+                                <ui:TextBlock
+                    Appearance="Secondary"
+                    Foreground="{DynamicResource TextFillColorSecondaryBrush}"
+                    Text="Reserved"
+                    TextWrapping="WrapWithOverflow" />
+                            </StackPanel>
+                        </Grid>
+                    </ui:CardAction>
+
+                    <StackPanel Grid.Row="2" Margin="0,24,0,0">
+                        <TextBlock
+                        FontSize="18"
+                        FontWeight="DemiBold"
+                        Text="General Link" />
+                        <ui:HyperlinkButton
+                            Margin="8,8,0,0"
+                            Padding="4"
+                            Content="Csrobo"
+                            NavigateUri="https://ipmp.csrobo.com:8090/projectDesign"
+                            ToolTip="https://ipmp.csrobo.com:8090/projectDesign/" /> 
+                        <ui:HyperlinkButton
+                        Margin="8,0,0,0"
+                        Padding="4"
+                        Content="倍福官网手册"
+                        NavigateUri="https://infosys.beckhoff.com/help/redirect.asp?F1=BeckhoffSearchNamespace.STRING&amp;locale=en-US&amp;codeLang="
+                        ToolTip="https://infosys.beckhoff.com/help/redirect.asp?F1=BeckhoffSearchNamespace.STRING&amp;locale=en-US&amp;codeLang=" />
+                    </StackPanel>
+                </Grid>
+              
 
 
             </TabItem>
@@ -53,19 +182,7 @@
                     </StackPanel>
                 </TabItem.Header>
                 
-                    <ui:ListView
-                            
-                             d:ItemsSource="{d:SampleData ItemCount=2}"
-                             ItemsSource="{Binding ViewModel.BasicListViewItems, Mode=TwoWay}"
-                             SelectedIndex="2"
-                             SelectionMode="Single">    
-                        <ui:ListView.ItemTemplate>
-                            <DataTemplate >
-                                <TextBlock Margin="8,4" Text="{Binding AppName}" />
-                                
-                            </DataTemplate>
-                        </ui:ListView.ItemTemplate>
-                    </ui:ListView>
+                  
 
                
             </TabItem>
@@ -77,7 +194,7 @@
                     </StackPanel>
                 </TabItem.Header>
                 <Grid>
-                    <TextBlock Margin="12" Text="Is a lie." />
+                  
                 </Grid>
             </TabItem>
         </TabControl>
