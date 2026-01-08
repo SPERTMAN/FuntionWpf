@@ -206,7 +206,7 @@ namespace Function.ViewModels.Pages
                     adapter.InvokeMethod("EnableDHCP", null);
 
                     // 2. 清除静态 DNS 设置 (可选，通常 DHCP 也会自动设置 DNS)
-                    adapter.InvokeMethod("SetDNSServerSearchOrder", new object[] { null });
+                    adapter.InvokeMethod("SetDNSServerSearchOrder", new object[] {  });
 
 
                     // 3. 重新获取IP地址 (需要调用 RenewDHCPLease 方法)
@@ -631,6 +631,21 @@ namespace Function.ViewModels.Pages
             
 
 
+        }
+
+        [RelayCommand]
+        private void OnNetCon()
+        {
+            try
+            {
+                // 使用 ncpa.cpl 命令直接打开网络连接
+                Process.Start("ncpa.cpl");
+            }
+            catch (System.ComponentModel.Win32Exception)
+            {
+                // 某些系统环境下可能需要显式调用 explorer.exe
+                Process.Start("explorer.exe", "shell:::{7007ACC7-3202-11D1-AAD2-00805FC1270E}");
+            }
         }
 
 

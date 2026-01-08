@@ -40,7 +40,7 @@ namespace Function.ViewModels.Pages
             return Task.CompletedTask;
         }
 
-       
+
 
         [RelayCommand]
         private void OnCounterIncrement()
@@ -82,7 +82,7 @@ namespace Function.ViewModels.Pages
                 );
 
             Colors = new ObservableCollection<DataColor>(colorCollection); ;
-            _Gray =colorCollection ;
+            _Gray = colorCollection;
             _isInitialized = true;
         }
 
@@ -131,8 +131,8 @@ namespace Function.ViewModels.Pages
 
             await Task.Run(async () =>
             {
-                
-               // List<DataColor> DataColors = Colors.ToList();
+
+                // List<DataColor> DataColors = Colors.ToList();
                 #region old
                 //for (int i = 0; i <= 255; i++)
                 //{
@@ -167,57 +167,67 @@ namespace Function.ViewModels.Pages
                 #endregion
 
 
-
-                // 2. 创建所有 Ping 任务的列表
-                var pingTasks = new List<Task>();
-
-                // 确保 Colors 集合已经被初始化，并且包含 254 个 DataColor 对象
-                for (int i = 0; i <= Colors.Count - 1; i++)
+                try
                 {
+                    // 2. 创建所有 Ping 任务的列表
+                    var pingTasks = new List<Task>();
 
-
-                    // ****** 关键修复 A: 避免索引捕获 ******
-                    int index = i;
-
-                    // ****** 关键修复 B: 直接在主线程构造 IP，减少线程池工作 ******
-                    // 假设您的 IP 地址构造方法是正确的
-                    string targetIp = $"{IpInfo.Ip.Substring(0, IpInfo.Ip.LastIndexOf('.') + 1)}{index}";
-
-                    // 为每个 IP 创建一个异步任务
-                    var task = Task.Run(async () =>
+                    // 确保 Colors 集合已经被初始化，并且包含 254 个 DataColor 对象
+                    for (int i = 0; i <= Colors.Count - 1; i++)
                     {
-                        
-                            using (Ping ping = new Ping())
+
+
+                        // ****** 关键修复 A: 避免索引捕获 ******
+                        int index = i;
+
+                        // ****** 关键修复 B: 直接在主线程构造 IP，减少线程池工作 ******
+                        // 假设您的 IP 地址构造方法是正确的
+                        string targetIp = $"{IpInfo.Ip.Substring(0, IpInfo.Ip.LastIndexOf('.') + 1)}{index}";
+
+                        // 为每个 IP 创建一个异步任务
+                        var task = Task.Run(async () =>
                         {
-                            // 注意：这里是 SendPingAsync，它不会阻塞线程池，效率高。
-                            PingReply reply = await ping.SendPingAsync(targetIp, 50);
 
-                            // 4. **核心修复 C: 线程安全更新绑定的集合**
-                            Application.Current.Dispatcher.Invoke(() =>
+                            using (Ping ping = new Ping())
                             {
-                                if (IpInfo.Ip == targetIp)
-                                {
-                                    Colors[index] = new DataColor() { Num = index, Color = Brushes.Blue }; return;
-                                }
-                                Brush newColor = (reply.Status == IPStatus.Success) ? Brushes.Green : Brushes.Red;
+                                // 注意：这里是 SendPingAsync，它不会阻塞线程池，效率高。
+                                PingReply reply = await ping.SendPingAsync(targetIp, 50);
 
-                                // 直接使用 ObservableCollection 的索引来替换元素
-                                // 这样 UI 就能实时更新该位置的颜色
-                                Colors[index] = new DataColor() { Num = index, Color = newColor };
-                            });
-                        }
-                    });
-                    pingTasks.Add(task);
+                                // 4. **核心修复 C: 线程安全更新绑定的集合**
+                                Application.Current.Dispatcher.Invoke(() =>
+                                {
+                                    if (IpInfo.Ip == targetIp)
+                                    {
+                                        Colors[index] = new DataColor() { Num = index, Color = Brushes.Blue }; return;
+                                    }
+                                    Brush newColor = (reply.Status == IPStatus.Success) ? Brushes.Green : Brushes.Red;
+
+                                    // 直接使用 ObservableCollection 的索引来替换元素
+                                    // 这样 UI 就能实时更新该位置的颜色
+                                    Colors[index] = new DataColor() { Num = index, Color = newColor };
+                                });
+                            }
+                        });
+                        pingTasks.Add(task);
+                        // 4. 等待所有任务完成
+                        
+                    }
+
+                    await Task.WhenAll(pingTasks);
+                    // Colors = DataColors;
+                    // 扫描完成后的逻辑...
+
+
+                    ProRingVis = Visibility.Hidden;
+                }
+                catch (Exception ex)
+                {
+                    
                 }
 
 
-                // 4. 等待所有任务完成
-                await Task.WhenAll(pingTasks);
-               // Colors = DataColors;
-                // 扫描完成后的逻辑...
 
-
-                ProRingVis = Visibility.Hidden;
+               
             });
 
         }

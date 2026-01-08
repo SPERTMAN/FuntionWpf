@@ -31,9 +31,13 @@
                         Command="{Binding ViewModel.SetDhcpIncrementCommand}"
                         Appearance="Primary"></ui:Button>
             <ui:Button  Margin="10,0,0,0" Content="打开远程桌面" 
-                        ToolTipService.ToolTip="此功能未开放"
+                        
                         Command="{Binding ViewModel.OpenMstscCommand}"
                         Appearance="Primary"></ui:Button>
+            <ui:Button  Margin="10,0,0,0" Content="打开网络连接" 
+               
+                 Command="{Binding ViewModel.NetConCommand}"
+                 Appearance="Primary"></ui:Button>
 
         </StackPanel>
         <TabControl Margin="0,8,0,0" Background="Gray" Height="402">
