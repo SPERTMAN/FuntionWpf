@@ -75,6 +75,8 @@
                        HorizontalAlignment="Stretch" 
                        Margin="5,0,0,0"
                        Click="BtnSave_Click"
+                       IsDefault="True"
+                       
                       />
         </Grid>
     </Grid>

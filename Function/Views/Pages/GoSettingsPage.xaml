@@ -1,0 +1,122 @@
+<Page
+    x:Class="Function.Views.Pages.GoSettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Function.Views.Pages"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+   
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    Title="GoSettings Page"
+    d:DataContext="{d:DesignInstance local:GoSettingsPage,
+                                     IsDesignTimeCreatable=False}"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <StackPanel Margin="0,0,0,24">
+        <ui:TextBlock
+            Margin="0,0,0,8"
+            FontTypography="BodyStrong"
+            Text="Appearance &amp; behavior" />
+        <ui:CardControl Margin="0,0,0,12" Icon="{ui:SymbolIcon Color24}">
+            <ui:CardControl.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <ui:TextBlock
+                        Grid.Row="0"
+                        FontTypography="Body"
+                        Text="主题" />
+                    <ui:TextBlock
+                        Grid.Row="1"
+                        Foreground="{ui:ThemeResource TextFillColorSecondaryBrush}"
+                        Text="选择要显示的应用主题" />
+
+                </Grid>
+            </ui:CardControl.Header>
+            <ComboBox
+      Grid.Column="1"
+      MinWidth="200"
+     
+      SelectedIndex="{Binding ViewModel.CurrentApplicationTheme, Converter={StaticResource ThemeToIndexConverter}, Mode=TwoWay}">
+                <ComboBoxItem Content="亮" />
+                <ComboBoxItem Content="暗" />
+
+            </ComboBox>
+        </ui:CardControl>
+
+        <ui:CardControl Margin="0,0,0,12" Icon="{ui:SymbolIcon Keyboard16}">
+            <ui:CardControl.Header>
+                <ui:TextBlock
+                    Grid.Row="0"
+                    FontTypography="Body"
+                    Text="截图快捷键" />
+               
+            </ui:CardControl.Header>
+            
+            <ui:Button
+                Grid.Row="0"
+                Command="{Binding ViewModel.CutBtnCommand}"
+                Content="Alt+S" 
+                /> 
+            
+            
+        </ui:CardControl>
+
+        <ui:TextBlock
+            Margin="0,24,0,8"
+            FontTypography="BodyStrong"
+            Text="About" />
+        <ui:CardExpander ContentPadding="0" Icon="{ui:ImageIcon 'pack://application:,,,/Assets/wpfui-icon-256.png', Width=38, Height=35}">
+            <ui:CardExpander.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <ui:TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        FontTypography="Body"
+                        Text="WPF UI" />
+                    <ui:TextBlock
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Foreground="{ui:ThemeResource TextFillColorSecondaryBrush}"
+                        Text="" />
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.RowSpan="2"
+                        Grid.Column="1"
+                        Margin="0,0,16,0"
+                        VerticalAlignment="Center"
+                        Foreground="{ui:ThemeResource TextFillColorSecondaryBrush}"
+                        Text="{Binding ViewModel.AppVersion, Mode=OneWay}" />
+                </Grid>
+            </ui:CardExpander.Header>
+            <StackPanel>
+                <Grid Margin="16">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="仓库地址" />
+                    <TextBlock
+                        Grid.Column="1"
+                        Foreground="{ui:ThemeResource TextFillColorSecondaryBrush}"
+                        Text="https://github.com/SPERTMAN/FuntionWpf.git" />
+                </Grid>
+                
+              
+                <TextBlock Margin="16" Text="{Binding ViewModel.AppVersion, Mode=OneWay}" />
+            </StackPanel>
+        </ui:CardExpander>
+    </StackPanel>
+</Page>

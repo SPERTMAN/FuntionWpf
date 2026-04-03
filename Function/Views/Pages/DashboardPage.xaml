@@ -18,8 +18,11 @@
     
     >
 
-    <Grid VerticalAlignment="Top">
-        
+    <Grid VerticalAlignment="Top" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
         <TabControl Margin="0,0,0,0" >
             <TabItem>
                 <TabItem.Header>
@@ -151,23 +154,23 @@
                         </Grid>
                     </ui:CardAction>
 
-                    <StackPanel Grid.Row="2" Margin="0,24,0,0">
+                    <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Margin="0,24,0,0"   >
                         <TextBlock
                         FontSize="18"
                         FontWeight="DemiBold"
-                        Text="General Link" />
-                        <ui:HyperlinkButton
-                            Margin="8,8,0,0"
-                            Padding="4"
-                            Content="Csrobo"
-                            NavigateUri="https://ipmp.csrobo.com:8090/projectDesign"
-                            ToolTip="https://ipmp.csrobo.com:8090/projectDesign/" /> 
-                        <ui:HyperlinkButton
-                        Margin="8,0,0,0"
-                        Padding="4"
-                        Content="倍福官网手册"
-                        NavigateUri="https://infosys.beckhoff.com/help/redirect.asp?F1=BeckhoffSearchNamespace.STRING&amp;locale=en-US&amp;codeLang="
-                        ToolTip="https://infosys.beckhoff.com/help/redirect.asp?F1=BeckhoffSearchNamespace.STRING&amp;locale=en-US&amp;codeLang=" />
+                        Text="General" />
+                        <ui:Button x:Name="RestartPrintServiceButton"  Margin="20,24,0,0" Height="40"  Content="重启打印机服务"
+                                    Command="{Binding ViewModel.RestartPrintServiceIncrementCommand}"
+                                    ToolTipService.ToolTip="在打印机提示没墨水等重启重新打印即可"
+                                    >
+                            
+                        </ui:Button>
+                        <ui:Button  Margin="20,24,0,0" Height="40" Width="{Binding ElementName=RestartPrintServiceButton, Path=ActualWidth, Mode=OneWay}"  Content="截图"
+              Command="{Binding ViewModel.OcrCommand}"
+              
+              >
+
+                        </ui:Button>
                     </StackPanel>
                 </Grid>
               
@@ -209,6 +212,8 @@
             VerticalAlignment="Center"
             Text="{Binding ViewModel.Counter, Mode=OneWay}" />-->
 
-
+       
     </Grid>
+
+    
 </Page>

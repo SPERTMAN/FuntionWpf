@@ -20,7 +20,8 @@ namespace Function.Views.Windows
             ViewModel = viewModel;
             DataContext = this;
 
-            SystemThemeWatcher.Watch(this);
+            //自动监控系统主题变化
+            //SystemThemeWatcher.Watch(this);
 
             InitializeComponent();
             SetPageService(navigationViewPageProvider);

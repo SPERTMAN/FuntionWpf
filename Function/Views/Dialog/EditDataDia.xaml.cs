@@ -22,7 +22,7 @@ namespace Function.Views.Pages
         public RomoteInfo ResultDataRem { get; private set; }
         public RomoteFile ResultDataFile { get; private set; }
 
-        //1:ip增加 2:ip编辑 3:远程增加 4:远程编辑 5:远程文件增加 6:远程文件编辑
+        //1:ip增加 2:ip编辑 3:远程增加 4:远程编辑 5:远程文件增加 6:远程文件编辑 7:设置临时IP地址
         public int _mode { get; private set; }
         // 构造函数：参数为 null 代表是【添加】，不为 null 代表是【编辑】
         public EditDataDia(int mode,object existingData = null)
@@ -56,6 +56,13 @@ namespace Function.Views.Pages
                 TxtSubnet.PlaceholderText = "远程的用户名";
                 TxtGateway.Text = "123456";
                 TxtGateway.PlaceholderText = "远程的密码";
+                return;
+            }
+            else if (_mode == 7)
+            {
+                TxtRemarks.Visibility = Visibility.Hidden;
+                TitleTextBlock.Text = "设置临时IP地址";
+                ResultDataIp = new IpInfoConfig();
                 return;
             }
             else
@@ -122,7 +129,7 @@ namespace Function.Views.Pages
                 System.Windows.MessageBox.Show("IP 地址格式不正确 (例如: 192.168.1.1)", "格式错误");
                 return; // 阻止保存
             }
-            if (_mode <= 2)
+            if (_mode <= 2||_mode==7)
             {
                 // 3. 校验 子网掩码 (可选，逻辑同上)
                 isValid = IPAddress.TryParse(subnetInput, out address)

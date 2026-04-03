@@ -1,4 +1,5 @@
-﻿using Function.Helpers;
+﻿using AutoUpdaterDotNET;
+using Function.Helpers;
 using Function.Services;
 using Function.ViewModels.Pages;
 using Function.ViewModels.Windows;
@@ -9,7 +10,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System.Configuration;
 using System.IO;
+using System.Net;
 using System.Reflection;
+using System.Security.Policy;
+using System.Windows.Forms;
 using System.Windows.Threading;
 using Wpf.Ui;
 using Wpf.Ui.DependencyInjection;
@@ -21,6 +25,7 @@ namespace Function
     /// </summary>
     public partial class App
     {
+        private static IConfiguration configuration;
         // The.NET Generic Host provides dependency injection, configuration, logging, and other services.
         // https://docs.microsoft.com/dotnet/core/extensions/generic-host
         // https://docs.microsoft.com/dotnet/core/extensions/dependency-injection
@@ -66,8 +71,11 @@ namespace Function
                 services.AddSingleton<SettingsPage>();
                 services.AddSingleton<SettingsViewModel>();
 
+                services.AddSingleton<GoSettingsPage>();
+                services.AddSingleton<GoSettingsViewModel>();
+
                 // 注入 IConfiguration 全局可用
-                var configuration = context.Configuration;
+                configuration = context.Configuration;
                 services.AddSingleton<IConfiguration>(configuration);
 
                 //注册弹窗
@@ -93,6 +101,9 @@ namespace Function
         private async void OnStartup(object sender, StartupEventArgs e)
         {
             await _host.StartAsync();
+
+           
+
         }
 
         /// <summary>
@@ -112,5 +123,7 @@ namespace Function
         {
             // For more info see https://docs.microsoft.com/en-us/dotnet/api/system.windows.application.dispatcherunhandledexception?view=windowsdesktop-6.0
         }
+
+       
     }
 }

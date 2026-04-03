@@ -4,12 +4,14 @@ using Function.Services;
 using Function.Views.Pages;
 using Microsoft.Extensions.Configuration;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Management;
 using System.Net;
 using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Windows;
+using System.Windows.Data;
 using Wpf.Ui;
 using Wpf.Ui.Abstractions.Controls;
 using Wpf.Ui.Appearance;
@@ -41,6 +43,13 @@ namespace Function.ViewModels.Pages
         private ObservableCollection<RomoteFile> _romoteFiles;//= GenerateProducts();
         [ObservableProperty]
         private ApplicationTheme _currentTheme = ApplicationTheme.Unknown;
+
+        // ----------------- 新增：搜索功能 -----------------
+        [ObservableProperty]
+        private string _searchKeyword = string.Empty;
+
+        [ObservableProperty]
+        private string _searchRemote = string.Empty;
 
         private string _adapterName = config["NetWorkName"];
         public Task OnNavigatedToAsync()
@@ -649,5 +658,76 @@ namespace Function.ViewModels.Pages
         }
 
 
+        // CommunityToolkit.Mvvm 会自动调用这个方法：当 SearchKeyword 发生改变时
+        partial void OnSearchKeywordChanged(string value)
+        {
+            FilterDataGrid(IpInfoConfigs, SearchKeyword);
+        }
+
+        partial void OnSearchRemoteChanged(string value)
+        {
+            FilterDataGrid(RomoteInfos,SearchRemote);
+        }
+
+        private void FilterDataGrid(object IpInfo,string info)
+        {
+            if (IpInfo == null) return;
+
+            // 获取绑定到 DataGrid 的默认视图
+            ICollectionView view = CollectionViewSource.GetDefaultView(IpInfo);
+
+            if (string.IsNullOrWhiteSpace(info))
+            {
+                // 如果搜索框为空，清除过滤，显示所有数据
+                view.Filter = null;
+            }
+            else
+            {
+                // 开启过滤：检查 Ip 和 remark，并忽略大小写
+                view.Filter = obj =>
+                {
+                    //if (obj is IpInfoConfig item)
+                    //{
+                   dynamic item = obj;
+                        // StringComparison.OrdinalIgnoreCase 就是不区分大小写的关键
+                        bool matchRemark = item.remark != null && item.remark.Contains(info, StringComparison.OrdinalIgnoreCase);
+                        bool matchIp = item.Ip != null && item.Ip.Contains(info, StringComparison.OrdinalIgnoreCase);
+
+                        return matchRemark || matchIp; // 只要名称或IP其中一个包含搜索词，就显示
+                    //}
+                    //return false;
+                };
+            }
+        }
+
+        // 代码里经常重新 new ObservableCollection，
+        // 这会导致之前的过滤视图丢失。所以每次列表被重新赋值时，也要重新应用过滤！
+        partial void OnIpInfoConfigsChanged(ObservableCollection<IpInfoConfig> value)
+        {
+            FilterDataGrid(IpInfoConfigs, SearchKeyword);
+        }
+
+
+        [RelayCommand]
+        private void OnSetTempIpIncrement(object parameter)
+        {
+
+            // 这里不能用依赖注入，必须手动 new，因为 item 是运行时才有的数据
+            var editor = new EditDataDia(7);
+
+            // 设置父窗口（让弹窗在主窗口中间打开）
+            editor.Owner = Application.Current.MainWindow;
+
+            // 打开模态窗口
+            if (editor.ShowDialog() == true)
+            {
+                // 获取结果并处理
+                var data = editor.ResultDataIp;
+                // ... 保存逻辑
+                OnSetStaticIpIncrement(data);
+
+               
+            }
+        }
     }
 }

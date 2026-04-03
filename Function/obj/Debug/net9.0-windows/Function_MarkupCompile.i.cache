@@ -1,5 +1,5 @@
 ﻿Function
-1.0.0.0
+1.0.0.1
 
 winexe
 C#
@@ -13,8 +13,8 @@ E:\Desktop\wpf ip\Process\Function\Function\App.xaml
 5-857920967
 1282391436
 281162721262
-238184074649
+257963839285
 Views\Dialog\EditDataDia.xaml;Views\Pages\DashboardPage.xaml;Views\Pages\DataPage.xaml;Views\Pages\SettingsPage.xaml;Views\Windows\MainWindow.xaml;
 
-False
+True
 
