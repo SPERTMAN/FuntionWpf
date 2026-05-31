@@ -7,8 +7,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:models="clr-namespace:Function.Models"
     xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:controls="clr-namespace:Function.Controls"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     Title="DataPage"
+    controls:PageControlDocumentation.DocumentationType="{x:Type ui:ContentDialog}"
     d:DataContext="{d:DesignInstance local:DataPage,
                                      IsDesignTimeCreatable=False}"
     d:DesignHeight="450"
@@ -26,90 +28,135 @@
             <i:InvokeCommandAction Command="{Binding ViewModel.LoadIpIncrementCommand}" />
         </i:EventTrigger>
     </i:Interaction.Triggers>
-    <Grid>
+    <TabControl Margin="0,8,0,0" >
+        <TabItem>
+            <TabItem.Header>
+                <TextBlock Text="IP 设置" />
+            </TabItem.Header>
+            <Grid>
 
-        <StackPanel>
-            <ui:CardControl Margin="0,0,0,12">
-                <ui:CardControl.Header>
-                    <StackPanel Orientation="Horizontal">
+                <StackPanel>
+                    <ui:CardControl Margin="0,0,0,12">
+                        <ui:CardControl.Header>
+                            <StackPanel Orientation="Horizontal">
 
-                        <Ellipse Width="20" Height="20"
-                             Fill="{Binding ViewModel.IpInfoVar.Status ,Mode=OneWay }"
-                             Stroke="Black"
-                             StrokeThickness="1"
-                            Margin="10,0,10,0"/>
-                        <ui:TextBlock
-                            TextAlignment="Center"
-                            
-                            FontTypography="BodyStrong"
-                             Margin="20,5,0,0"
-                            Text="IP :" />
-                        <ui:TextBlock
-                           
-                            FontTypography="Body"
-                            Text="{Binding ViewModel.IpInfoVar.Ip ,Mode=OneWay}" 
-                            Margin="4,5,0,0"/>
-
-                        <!--<ui:Button Grid.Column="2" Content="Click me!" 
-                                   Command="{Binding ViewModel.CounterIncrementCommand, Mode=OneWay}" Margin="43,0,0,0">
-                            
-                        </ui:Button>-->
-                        <ui:TextBlock
-                        FontTypography="BodyStrong"
-                        Text="子网掩码 :" 
-                        Margin="20,5,0,0"/>
-
-                        <ui:TextBlock
-                            FontTypography="Body"
-                            Text="{Binding ViewModel.IpInfoVar.SubNet ,Mode=OneWay}" 
-                            Margin="4,5,0,0"/>
-
-                        <ui:TextBlock
+                                <Ellipse Width="20" Height="20"
+                          Fill="{Binding ViewModel.IpInfoVar.Status ,Mode=OneWay }"
+                          Stroke="Black"
+                          StrokeThickness="1"
+                         Margin="10,0,10,0"/>
+                                <ui:TextBlock
+                         TextAlignment="Center"
+                         
                          FontTypography="BodyStrong"
-                        Text="网关 :" 
-                        Margin="20,5,0,0"/>
+                          Margin="20,5,0,0"
+                         Text="IP :" />
+                                <ui:TextBlock
+                        
+                         FontTypography="Body"
+                         Text="{Binding ViewModel.IpInfoVar.Ip ,Mode=OneWay}" 
+                         Margin="4,5,0,0"/>
 
-                        <ui:TextBlock
-                        FontTypography="Body"
-                        Text="{Binding ViewModel.IpInfoVar.GetWay ,Mode=OneWay}" 
-                        Margin="4,5,0,0"/>
+                                <!--<ui:Button Grid.Column="2" Content="Click me!" 
+                                Command="{Binding ViewModel.CounterIncrementCommand, Mode=OneWay}" Margin="43,0,0,0">
+                         
+                     </ui:Button>-->
+                                <ui:TextBlock
+                     FontTypography="BodyStrong"
+                     Text="子网掩码 :" 
+                     Margin="20,5,0,0"/>
 
-                        <ui:Button  Margin="20,0,0,0" Content="Ping" 
-                                    Appearance="Primary"
-                                    Command="{Binding ViewModel.PingIncrementCommand,Mode=OneWay}"
-                                    ></ui:Button>
+                                <ui:TextBlock
+                         FontTypography="Body"
+                         Text="{Binding ViewModel.IpInfoVar.SubNet ,Mode=OneWay}" 
+                         Margin="4,5,0,0"/>
+
+                                <ui:TextBlock
+                      FontTypography="BodyStrong"
+                     Text="网关 :" 
+                     Margin="20,5,0,0"/>
+
+                                <ui:TextBlock
+                     FontTypography="Body"
+                     Text="{Binding ViewModel.IpInfoVar.GetWay ,Mode=OneWay}" 
+                     Margin="4,5,0,0"/>
+
+                                <ui:Button  Margin="20,0,0,0" Content="Ping" 
+                                 Appearance="Primary"
+                                 Command="{Binding ViewModel.PingIncrementCommand,Mode=OneWay}"
+                                 ></ui:Button>
+                            </StackPanel>
+                        </ui:CardControl.Header>
+
+
+
+                    </ui:CardControl>
+
+                    <ui:VirtualizingItemsControl
+            
+             ItemsSource="{Binding ViewModel.Colors, Mode=OneWay}"
+             VirtualizingPanel.CacheLengthUnit="Item">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="{x:Type models:DataColor}">
+                                <ui:TextBlock
+                         Width="45"
+                         
+                         Margin="2"
+                         Padding="0"
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         Appearance="Secondary"
+                         TextAlignment="Center"
+                         
+                         Background="{Binding Color, Mode=OneWay}"
+                         FontSize="20"
+                         Text="{Binding Num, Mode=OneWay}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ui:VirtualizingItemsControl>
+                </StackPanel>
+
+                <ui:ProgressRing  Visibility="{Binding ViewModel.ProRingVis}" IsIndeterminate="True"/>
+
+            </Grid>
+        </TabItem>
+        <TabItem>
+            
+            <TabItem.Header>
+                <TextBlock Text="倍福ADS" />
+            </TabItem.Header>
+            <StackPanel>
+                
+                <ui:CardControl Margin="0,0,0,12" >
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox Content="临时连接" IsChecked="{Binding ViewModel.IsTemporaryConnection, Mode=TwoWay}"></CheckBox>
+                        <ui:Button Content="搜索" 
+                      Appearance="Primary"
+                      Command="{Binding ViewModel.SearchDeviceCommand,Mode=OneWay}" Width="93"/>
                     </StackPanel>
-                </ui:CardControl.Header>
+                </ui:CardControl>
+                <DataGrid Grid.Row="1" Name="IpDataGrid"  AutoGenerateColumns="False"
+                 IsReadOnly="True"
+           ItemsSource="{Binding ViewModel.BeckhoffInfo, Mode=TwoWay}" Margin="0,0,0,10" >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="主机名" Binding="{Binding HostName, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="Connected" Binding="{Binding Connected, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="IP地址" Binding="{Binding Ip, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="AmsNetId" Binding="{Binding AmsNetId, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="OsVersion" Binding="{Binding OsVersion, Mode=TwoWay}" />
+                    </DataGrid.Columns>
 
+                    <DataGrid.InputBindings>
+                        <MouseBinding MouseAction="LeftDoubleClick" 
+                       Command="{Binding ViewModel.ConnectAdsCommand}" 
+                       CommandParameter="{Binding ElementName=IpDataGrid, Path=SelectedItem}" />
+                    </DataGrid.InputBindings>
+                </DataGrid>
+                <ui:ProgressRing  Visibility="{Binding ViewModel.ProAdsVis}" IsIndeterminate="True" Height="60" Width="60"/>
+            </StackPanel>
+            
+        </TabItem>
+        
+    </TabControl>
 
-
-            </ui:CardControl>
-
-            <ui:VirtualizingItemsControl
-               
-                ItemsSource="{Binding ViewModel.Colors, Mode=OneWay}"
-                VirtualizingPanel.CacheLengthUnit="Item">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate DataType="{x:Type models:DataColor}">
-                        <ui:TextBlock
-                            Width="45"
-                            
-                            Margin="2"
-                            Padding="0"
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            Appearance="Secondary"
-                            TextAlignment="Center"
-                            
-                            Background="{Binding Color, Mode=OneWay}"
-                            FontSize="20"
-                            Text="{Binding Num, Mode=OneWay}" />
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ui:VirtualizingItemsControl>
-        </StackPanel>
-
-        <ui:ProgressRing  Visibility="{Binding ViewModel.ProRingVis}" IsIndeterminate="True"/>
-
-    </Grid>
 </Page>

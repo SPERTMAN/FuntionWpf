@@ -1,8 +1,13 @@
 ﻿using Function.ViewModels.Pages;
 using Wpf.Ui.Abstractions.Controls;
+using Wpf.Ui.Controls;
+using Wpf.Ui.Controls;
+
 
 namespace Function.Views.Pages
 {
+
+
     public partial class DataPage : INavigableView<DataViewModel> 
     {
         public DataViewModel ViewModel { get; }
@@ -14,5 +19,7 @@ namespace Function.Views.Pages
 
             InitializeComponent();
         }
+
+       
     }
 }

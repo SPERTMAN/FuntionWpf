@@ -1,3 +1,4 @@
+using BeckhoffSearch;
 using Function.Models;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -8,15 +9,39 @@ using System.Net;
 using System.Net.NetworkInformation;
 using System.Net.Sockets;
 using System.Threading;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Forms;
 using System.Windows.Media;
 using Wpf.Ui;
 using Wpf.Ui.Abstractions.Controls;
 using Wpf.Ui.Controls;
+using Wpf.Ui.Extensions;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+using Button = Wpf.Ui.Controls.Button;
+using ContentDialog = Wpf.Ui.Controls.ContentDialog;
+
 
 namespace Function.ViewModels.Pages
 {
-    public partial class DataViewModel(ISnackbarService snackbarService, IConfiguration config) : ObservableObject, INavigationAware
+    public enum AdsConnectChoice
+    {
+        Cancel,
+
+        CE,
+        OPCON,
+        NEXEED,
+        Other
+    }
+    public struct UserPwd
+    {
+        public string UserName { get; set; }
+        public string Password { get; set; }
+    }
+    public partial class DataViewModel(ISnackbarService snackbarService, IConfiguration config, IContentDialogService contentDialogService) : ObservableObject, INavigationAware
     {
 
 
@@ -30,7 +55,16 @@ namespace Function.ViewModels.Pages
         [ObservableProperty]
         private Visibility _proRingVis = Visibility.Hidden;
         [ObservableProperty]
+        private Visibility _proAdsVis = Visibility.Hidden;
+        [ObservableProperty]
+        private bool _isTemporaryConnection = true;
+        [ObservableProperty]
         private Statu _ipInfoVar;
+        //[ObservableProperty]
+        //private List<BeckhoffModel> _beckhoffDevice=new List<BeckhoffModel>();
+
+        [ObservableProperty]
+        private ObservableCollection<BeckhoffModel> _beckhoffInfo=new ObservableCollection<BeckhoffModel>();
 
         public Task OnNavigatedToAsync()
         {
@@ -194,7 +228,7 @@ namespace Function.ViewModels.Pages
                                 PingReply reply = await ping.SendPingAsync(targetIp, 50);
 
                                 // 4. **核心修复 C: 线程安全更新绑定的集合**
-                                Application.Current.Dispatcher.Invoke(() =>
+                                System.Windows.Application.Current.Dispatcher.Invoke(() =>
                                 {
                                     if (IpInfo.Ip == targetIp)
                                     {
@@ -263,6 +297,215 @@ namespace Function.ViewModels.Pages
             }
             return ipInfo;
 
+        }
+        private AdsConnectChoice ShowAdsChoiceDialog()
+        {
+            var window = new Window
+            {
+                Title = "请选择目标系统",
+                SizeToContent = SizeToContent.WidthAndHeight,
+                WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                ResizeMode = ResizeMode.NoResize,
+                ShowInTaskbar = false
+            };
+
+            AdsConnectChoice choice = AdsConnectChoice.Cancel;
+
+            var root = new StackPanel
+            {
+                Margin = new Thickness(20)
+            };
+
+            root.Children.Add(new Wpf.Ui.Controls.TextBlock
+            {
+                Text = "请选择系统",
+                FontSize = 18,
+                FontWeight = FontWeights.SemiBold,
+                HorizontalAlignment = System.Windows.HorizontalAlignment.Center,
+                Margin = new Thickness(0, 0, 0, 20)
+            });
+
+            var grid = new UniformGrid
+            {
+                Rows = 2,
+                Columns = 2
+            };
+
+            Button CreateButton(string text, AdsConnectChoice result)
+            {
+                var btn = new Button
+                {
+                    Content = text,
+                    Width = 150,
+                    Height = 80,
+                    Margin = new Thickness(8),
+                    FontSize = 18,
+                    FontWeight = FontWeights.SemiBold
+                };
+
+                btn.Click += (_, _) =>
+                {
+                    choice = result;
+                    window.DialogResult = true;
+                    window.Close();
+                };
+
+                return btn;
+            }
+
+            grid.Children.Add(CreateButton("CE", AdsConnectChoice.CE));
+            grid.Children.Add(CreateButton("OPCON", AdsConnectChoice.OPCON));
+            grid.Children.Add(CreateButton("NEXEED", AdsConnectChoice.NEXEED));
+            grid.Children.Add(CreateButton("...", AdsConnectChoice.Other));
+
+            root.Children.Add(grid);
+
+            window.Content = root;
+
+            window.ShowDialog();
+
+            return choice;
+        }
+        [RelayCommand]
+        private async Task ConnectAds(object parameter)
+        {
+            try
+            {
+                if (parameter == null) return;
+
+                var choice = ShowAdsChoiceDialog();
+
+
+                UserPwd UserName = choice switch
+                {
+                    AdsConnectChoice.CE => new UserPwd { UserName = "Administrator", Password = "1" },
+                    AdsConnectChoice.OPCON => new UserPwd { UserName = "OpconAdmin", Password = "OpconnAdminn" },
+                    AdsConnectChoice.NEXEED => new UserPwd { UserName = "NexeedAdmin", Password = "NexeeddAdminn" },
+                    AdsConnectChoice.Other => new UserPwd { UserName = "Administrator", Password = "1" },
+                    _ => new UserPwd { UserName = "Administrator", Password = "1" }
+                };
+
+
+            ProAdsVis = Visibility.Visible;
+                BeckhoffModel device= parameter as BeckhoffModel;
+                var connector = new BeckhoffRouteConnector();
+                var result=new BeckhoffRouteConnectResult();
+                await Task.Run(() =>
+                {
+                     result = connector.Connect(new BeckhoffRouteConnectRequest
+                    {
+                        Address = device.Ip,
+                        UserName = UserName.UserName,
+                        Password = UserName.Password,
+
+                        // Static：不带 -Temporary
+                        // Temporary：带 -Temporary
+
+                        RouteType = IsTemporaryConnection ? BeckhoffRouteType.Temporary : BeckhoffRouteType.Static,
+
+                        ModulePath = @"C:\TwinCAT\AdsApi\Powershell\TcXaeMgmt\TcXaeMgmt.psd1"
+                    });
+                });
+
+                if (!result.CommandSuccess)
+                {
+                    snackbarService.Show(
+                      "连接错误",
+                      $"请检查错误信息：{result.CommandError}",
+                      ControlAppearance.Caution,
+                      new SymbolIcon(SymbolRegular.Warning24),
+                      TimeSpan.FromSeconds(3)
+                        );
+                    
+
+
+                }
+                else
+                {
+                    snackbarService.Show(
+                     "连接成功",
+                     $"",
+                     ControlAppearance.Success,
+                     new SymbolIcon(SymbolRegular.Accessibility16),
+                     TimeSpan.FromSeconds(3)
+                       );
+                    device.Connected="x";
+                    var item = BeckhoffInfo.FirstOrDefault(x => x.Ip == device.Ip);
+
+                    if (item != null)
+                    {
+                       
+                        BeckhoffInfo.Remove(item);
+
+                       
+                        item.Connected = "x";
+
+                        
+                        BeckhoffInfo.Add(item);
+
+                    }
+                   
+
+                }
+                ProAdsVis = Visibility.Hidden;
+
+            }
+            catch (Exception ex)
+            {
+                ProAdsVis = Visibility.Hidden;
+                throw;
+            }
+            
+
+        }
+
+        [RelayCommand]
+        private async Task SearchDevice()
+        {
+            try
+            {
+                ProAdsVis = Visibility.Visible;
+                if (BeckhoffInfo.Count > 0) BeckhoffInfo.Clear();
+                string LocalIp = IpInfoVar.Ip;
+
+                using var searcher = new BeckhoffBroadcastSearcher(
+                LocalIp,
+                "192.168.0.1.1.1",
+                localPort: 50000);
+
+                await Task.Run(() => { 
+                string newIp = LocalIp.Substring(0, LocalIp.LastIndexOf('.') + 1) + "255";
+                // 广播搜索，返回多个设备
+                var devices2 = searcher.SearchBroadcast(newIp, timeoutMs: 3000);
+                //List<BeckhoffModel> beckhoff = new List<BeckhoffModel>();
+
+                foreach (var device in devices2)
+                {
+                   
+                    if (device.Ip == LocalIp) continue;
+                    if(BeckhoffRouteConnector.CheckRoute(device))
+                        device.Connected="x";
+
+                        System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                        {
+                            BeckhoffInfo.Add(device);
+                        });
+                    }
+                });
+                ProAdsVis = Visibility.Hidden;
+            }
+            catch (Exception ex)
+            {
+                snackbarService.Show(
+              "搜索错误",
+              $"请检查错误信息：{ex.Message}",
+              ControlAppearance.Caution,
+              new SymbolIcon(SymbolRegular.Warning24),
+              TimeSpan.FromSeconds(3)
+               );
+                ProAdsVis = Visibility.Hidden;
+            }
+          
         }
     }
 }

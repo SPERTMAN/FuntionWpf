@@ -143,3 +143,4 @@ E:\Desktop\wpf ip\Process\Function\Function\obj\Debug\net9.0-windows10.0.17763.0
 E:\Desktop\wpf ip\Process\Function\Function\bin\Debug\net9.0-windows10.0.17763.0\ChefKeys.dll
 E:\Desktop\wpf ip\Process\Function\Function\bin\Debug\net9.0-windows10.0.17763.0\NHotkey.dll
 E:\Desktop\wpf ip\Process\Function\Function\bin\Debug\net9.0-windows10.0.17763.0\NHotkey.Wpf.dll
+E:\Desktop\wpf ip\Process\Function\Function\obj\Debug\net9.0-windows10.0.17763.0\Controls\PageControlDocumentation.baml

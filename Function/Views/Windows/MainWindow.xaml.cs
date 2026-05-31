@@ -14,7 +14,8 @@ namespace Function.Views.Windows
             MainWindowViewModel viewModel,
             INavigationViewPageProvider navigationViewPageProvider,
             INavigationService navigationService,
-            ISnackbarService snackbarService
+            ISnackbarService snackbarService,
+             IContentDialogService contentDialogService
         )
         {
             ViewModel = viewModel;
@@ -33,6 +34,7 @@ namespace Function.Views.Windows
                      ApplicationTheme.Dark,
                      WindowBackdropType.Mica
                  );
+            contentDialogService.SetDialogHost(RootContentDialog);
         }
 
         #region INavigationWindow methods
