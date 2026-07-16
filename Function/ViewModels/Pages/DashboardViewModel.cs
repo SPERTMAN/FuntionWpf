@@ -5,6 +5,8 @@ using Microsoft.Toolkit.Uwp.Notifications;
 using ScreenGrab;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.ServiceProcess;
@@ -17,6 +19,10 @@ namespace Function.ViewModels.Pages
     public partial class DashboardViewModel : ObservableObject
     {
         private const int DefaultCaptureDelayMs = 100; // 捕获前的默认延迟时间，单位为毫秒
+        private const string TransferToolPath = @"D:\SoftWares\Proface\4.08v\GP-Pro EX 4.08\Trans.exe";
+        private const string TransferTwincatPath = @"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\devenv.exe";
+        private static string ReceiveProjectPath =>
+    $@"E:\Desktop\{DateTime.Today:yyyyMMdd}.prx";
 
         [ObservableProperty]
         private int _counter = 0;
@@ -197,6 +203,131 @@ namespace Function.ViewModels.Pages
                 bitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
                 ms.Position = 0;
                 return BitmapFrame.Create(ms, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+            }
+        }
+
+        /// <summary>
+        /// 启动 Proface Transfer Tool 接收工程。
+        /// </summary>
+        [RelayCommand]
+        private void ReceiveProfaceProgram()
+        {
+            if (!File.Exists(TransferToolPath))
+            {
+                SetTaskPromat(
+                    "启动失败",
+                    $"未找到 Transfer Tool：{TransferToolPath}",
+                    ControlAppearance.Danger);
+
+                return;
+            }
+
+            string? workingDirectory = Path.GetDirectoryName(TransferToolPath);
+
+            if (string.IsNullOrWhiteSpace(workingDirectory))
+            {
+                SetTaskPromat(
+                    "启动失败",
+                    "无法确定 Transfer Tool 的工作目录。",
+                    ControlAppearance.Danger);
+
+                return;
+            }
+
+            try
+            {
+               
+                ProcessStartInfo processStartInfo = new()
+                {
+                    FileName = TransferToolPath,
+                    WorkingDirectory = workingDirectory,
+                    Arguments = $"/Mode=2 /R_Path=\"{ReceiveProjectPath}\"",
+                    UseShellExecute = true
+                };
+
+                Process.Start(processStartInfo);
+
+                SetTaskPromat(
+                    "启动成功",
+                    $"已启动 Proface 接收工程：{ReceiveProjectPath}",
+                    ControlAppearance.Success);
+            }
+            catch (Win32Exception exception)
+            {
+                SetTaskPromat(
+                    "启动失败",
+                    exception.Message,
+                    ControlAppearance.Danger);
+            }
+            catch (InvalidOperationException exception)
+            {
+                SetTaskPromat(
+                    "启动失败",
+                    exception.Message,
+                    ControlAppearance.Danger);
+            }
+        }
+
+        /// <summary>
+        /// 启动 Proface Transfer Tool 接收工程。
+        /// </summary>
+        [RelayCommand]
+        private void ReceiveTwincatProgram()
+        {
+            if (!File.Exists(TransferTwincatPath))
+            {
+                SetTaskPromat(
+                    "启动失败",
+                    $"未找到 Transfer Tool：{TransferTwincatPath}",
+                    ControlAppearance.Danger);
+
+                return;
+            }
+
+            string? workingDirectory = Path.GetDirectoryName(TransferTwincatPath);
+
+            if (string.IsNullOrWhiteSpace(workingDirectory))
+            {
+                SetTaskPromat(
+                    "启动失败",
+                    "无法确定 Transfer Tool 的工作目录。",
+                    ControlAppearance.Danger);
+
+                return;
+            }
+
+            try
+            {
+
+                ProcessStartInfo psi = new ProcessStartInfo
+                {
+                    FileName = TransferTwincatPath,
+                    WorkingDirectory = Path.GetDirectoryName(TransferTwincatPath),
+                    // 启动后直接触发该命令
+                    //Arguments = "/TcVersionDefault 4022.30 /Command File.OpenProjectfromTarget",
+                    Arguments = "/Command File.OpenProjectfromTarget",
+                    UseShellExecute = true
+                };
+                Process.Start(psi);
+
+                SetTaskPromat(
+                    "启动成功",
+                    $"已启动 Twincat 接收工程",
+                    ControlAppearance.Success);
+            }
+            catch (Win32Exception exception)
+            {
+                SetTaskPromat(
+                    "启动失败",
+                    exception.Message,
+                    ControlAppearance.Danger);
+            }
+            catch (InvalidOperationException exception)
+            {
+                SetTaskPromat(
+                    "启动失败",
+                    exception.Message,
+                    ControlAppearance.Danger);
             }
         }
     }

@@ -125,7 +125,12 @@
             <TabItem.Header>
                 <TextBlock Text="倍福ADS" />
             </TabItem.Header>
-            <StackPanel>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel>
                 
                 <ui:CardControl Margin="0,0,0,12" >
                     <StackPanel Orientation="Horizontal">
@@ -135,26 +140,28 @@
                       Command="{Binding ViewModel.SearchDeviceCommand,Mode=OneWay}" Width="93"/>
                     </StackPanel>
                 </ui:CardControl>
+               
+            </StackPanel>
                 <DataGrid Grid.Row="1" Name="IpDataGrid"  AutoGenerateColumns="False"
-                 IsReadOnly="True"
-           ItemsSource="{Binding ViewModel.BeckhoffInfo, Mode=TwoWay}" Margin="0,0,0,10" >
+            IsReadOnly="True"
+         ItemsSource="{Binding ViewModel.BeckhoffInfo, Mode=TwoWay}" Margin="0,0,0,10"  >
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="主机名" Binding="{Binding HostName, Mode=TwoWay}" />
                         <DataGridTextColumn Header="Connected" Binding="{Binding Connected, Mode=TwoWay}" />
                         <DataGridTextColumn Header="IP地址" Binding="{Binding Ip, Mode=TwoWay}" />
                         <DataGridTextColumn Header="AmsNetId" Binding="{Binding AmsNetId, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="TwinCATVersion" Binding="{Binding TwinCATVersion, Mode=TwoWay}" />
                         <DataGridTextColumn Header="OsVersion" Binding="{Binding OsVersion, Mode=TwoWay}" />
                     </DataGrid.Columns>
 
                     <DataGrid.InputBindings>
                         <MouseBinding MouseAction="LeftDoubleClick" 
-                       Command="{Binding ViewModel.ConnectAdsCommand}" 
-                       CommandParameter="{Binding ElementName=IpDataGrid, Path=SelectedItem}" />
+            Command="{Binding ViewModel.ConnectAdsCommand}" 
+            CommandParameter="{Binding ElementName=IpDataGrid, Path=SelectedItem}" />
                     </DataGrid.InputBindings>
                 </DataGrid>
-                <ui:ProgressRing  Visibility="{Binding ViewModel.ProAdsVis}" IsIndeterminate="True" Height="60" Width="60"/>
-            </StackPanel>
-            
+                <ui:ProgressRing Grid.Row="1" Visibility="{Binding ViewModel.ProAdsVis}" IsIndeterminate="True" Height="60" Width="60"/>
+            </Grid>
         </TabItem>
         
     </TabControl>

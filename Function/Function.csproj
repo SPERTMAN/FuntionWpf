@@ -10,6 +10,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	<Version>1.0.0.1</Version>
+	  <!-- 启用单文件打包 -->
+	  <PublishSingleFile>true</PublishSingleFile>
+	  <!-- 将运行时库直接嵌入 EXE 中 -->
+	  <SelfContained>true</SelfContained>
+	  <!-- 针对 Win11 优化：强制将 CoreCLR 静态链接或解压运行 -->
+	  <IncludeAllContentForSelfContained>true</IncludeAllContentForSelfContained>
   </PropertyGroup>
 
   <ItemGroup>

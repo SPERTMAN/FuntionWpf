@@ -154,24 +154,74 @@
                         </Grid>
                     </ui:CardAction>
 
-                    <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Margin="0,24,0,0"   >
-                        <TextBlock
-                        FontSize="18"
-                        FontWeight="DemiBold"
-                        Text="General" />
-                        <ui:Button x:Name="RestartPrintServiceButton"  Margin="20,24,0,0" Height="40"  Content="重启打印机服务"
-                                    Command="{Binding ViewModel.RestartPrintServiceIncrementCommand}"
-                                    ToolTipService.ToolTip="在打印机提示没墨水等重启重新打印即可"
-                                    >
-                            
-                        </ui:Button>
-                        <ui:Button  Margin="20,24,0,0" Height="40" Width="{Binding ElementName=RestartPrintServiceButton, Path=ActualWidth, Mode=OneWay}"  Content="截图"
-              Command="{Binding ViewModel.OcrCommand}"
-              
-              >
+                    <Grid Grid.Row="1" Grid.ColumnSpan="3" Margin="0,24,0,0">
+                        <Grid.Resources>
+                            <!-- 该 Grid 内部的所有 ui:Button 自动统一边距为 10,30,0,0  -->
+                            <!--需使用 BasedOn 继承 WPF-UI 的原始按钮样式-->
+                                <Style TargetType="ui:Button" BasedOn="{StaticResource {x:Type ui:Button}}">
+                                <Setter Property="Margin" Value="10,30,0,0" />
+                                <Setter Property="Height" Value="40" />
+                            </Style>
+                        </Grid.Resources>
+                        <!-- 定义行：第0行为标题，第1行为按钮 -->
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
 
-                        </ui:Button>
-                    </StackPanel>
+                        <!-- 定义与上方卡片对应的3列 -->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+
+                        <TextBlock Grid.Row="1" Grid.Column="1"
+               
+                       FontSize="18"
+                       FontWeight="DemiBold"
+                       Text="Work" />
+
+                        <!-- 第 0 列（左侧）：重启打印机服务与截图 -->
+                        <StackPanel Grid.Row="1" Grid.Column="0">
+                            <ui:Button x:Name="RestartPrintServiceButton"
+                  
+                   HorizontalAlignment="Left"
+                   Width="138"
+                   Content="重启打印机服务"
+                   Command="{Binding ViewModel.RestartPrintServiceIncrementCommand}"
+                   ToolTipService.ToolTip="在打印机提示没墨水等重启重新打印即可" />
+
+                            <ui:Button 
+                   HorizontalAlignment="Left"
+                   Width="{Binding ElementName=RestartPrintServiceButton, Path=ActualWidth, Mode=OneWay}"
+                   Content="截图"
+                   Command="{Binding ViewModel.OcrCommand}" />
+                        </StackPanel>
+
+
+
+                        <TextBlock Grid.Row="1"
+               
+                       FontSize="18"
+                       FontWeight="DemiBold"
+                       Text="General" />
+                        <!-- 第 1 列（中间列）：接收Proface程序 -->
+                        <StackPanel Grid.Row="1" Grid.Column="1">
+                            
+                            <ui:Button 
+                   HorizontalAlignment="Left"
+                   Width="{Binding ElementName=RestartPrintServiceButton, Path=ActualWidth, Mode=OneWay}"
+                   Content="接收Proface程序"
+                   Command="{Binding ViewModel.ReceiveProfaceProgramCommand}" />
+                            <ui:Button 
+                            HorizontalAlignment="Left"
+                            Width="{Binding ElementName=RestartPrintServiceButton, Path=ActualWidth, Mode=OneWay}"
+                            Content="接收Twincat程序"
+                            Command="{Binding ViewModel.ReceiveTwincatProgramCommand}" />   
+                        </StackPanel>
+                    </Grid>
                 </Grid>
               
 

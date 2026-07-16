@@ -464,48 +464,80 @@ namespace Function.ViewModels.Pages
         {
             try
             {
+                Statu IpInfo = GetRealtekInfo();
+                if (IpInfo.Status != Brushes.Green)
+                {
+                    snackbarService.Show(
+                        "网卡未连接",
+                        "请检查是否插上网线",
+                        ControlAppearance.Caution,
+                        new SymbolIcon(SymbolRegular.Warning24),
+                        TimeSpan.FromSeconds(2));
+                    return;
+                }
+
                 ProAdsVis = Visibility.Visible;
                 if (BeckhoffInfo.Count > 0) BeckhoffInfo.Clear();
-                string LocalIp = IpInfoVar.Ip;
+                string localIp = IpInfoVar.Ip;
 
-                using var searcher = new BeckhoffBroadcastSearcher(
-                LocalIp,
-                "192.168.0.1.1.1",
-                localPort: 50000);
+                using var searcher = new BeckhoffBroadcastSearcher(localIp, "192.168.0.1.1.1", localPort: 50000);
+                using var routeSemaphore = new SemaphoreSlim(8); // 并发度提到 8
+                var routeTasks = new System.Collections.Concurrent.ConcurrentBag<Task>();
 
-                await Task.Run(() => { 
-                string newIp = LocalIp.Substring(0, LocalIp.LastIndexOf('.') + 1) + "255";
-                // 广播搜索，返回多个设备
-                var devices2 = searcher.SearchBroadcast(newIp, timeoutMs: 3000);
-                //List<BeckhoffModel> beckhoff = new List<BeckhoffModel>();
-
-                foreach (var device in devices2)
+                await Task.Run(async () =>
                 {
-                   
-                    if (device.Ip == LocalIp) continue;
-                    if(BeckhoffRouteConnector.CheckRoute(device))
-                        device.Connected="x";
+                    string newIp = localIp.Substring(0, localIp.LastIndexOf('.') + 1) + "255";
 
-                        System.Windows.Application.Current.Dispatcher.Invoke(() =>
+                    // 🚀 传入 onDeviceFound 回调：每收到一台 PLC 的 UDP 包，立刻执行括号里的逻辑！
+                    searcher.SearchBroadcast(newIp, timeoutMs: 1500, onDeviceFound: device =>
+                    {
+                        // 1. 收到包瞬间推上 UI 列表（用户肉眼感觉是秒出！）
+                        System.Windows.Application.Current.Dispatcher.BeginInvoke(() =>
                         {
                             BeckhoffInfo.Add(device);
                         });
-                    }
+
+                        // 2. 紧接着开启一个真正的后台并发任务去测路由 (CheckRoute)
+                        var task = Task.Run(async () =>
+                        {
+                            await routeSemaphore.WaitAsync();
+                            try
+                            {
+                                if (BeckhoffRouteConnector.CheckRoute(device))
+                                {
+                                    // 测通一台，立刻点亮一台的 "x"
+                                    System.Windows.Application.Current.Dispatcher.BeginInvoke(() =>
+                                    {
+                                        device.Connected = "x";
+                                    });
+                                }
+                            }
+                            finally
+                            {
+                                routeSemaphore.Release();
+                            }
+                        });
+
+                        routeTasks.Add(task);
+                    });
+
+                    // 等待所有设备的后台路由检测收尾
+                    await Task.WhenAll(routeTasks);
                 });
-                ProAdsVis = Visibility.Hidden;
             }
             catch (Exception ex)
             {
                 snackbarService.Show(
-              "搜索错误",
-              $"请检查错误信息：{ex.Message}",
-              ControlAppearance.Caution,
-              new SymbolIcon(SymbolRegular.Warning24),
-              TimeSpan.FromSeconds(3)
-               );
+                    "搜索错误",
+                    $"请检查错误信息：{ex.Message}",
+                    ControlAppearance.Caution,
+                    new SymbolIcon(SymbolRegular.Warning24),
+                    TimeSpan.FromSeconds(3));
+            }
+            finally
+            {
                 ProAdsVis = Visibility.Hidden;
             }
-          
         }
     }
 }

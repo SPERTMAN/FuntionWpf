@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Function</id>
+    <version>1.0.0.1</version>
+    <authors>Function</authors>
+    <description>Package Description</description>
+    <repository type="git" commit="27642c9e5550c61120851934e8fabf1034e2d7dc" />
+    <dependencies>
+      <group targetFramework="net9.0-windows10.0.17763">
+        <dependency id="Autoupdater.NET.Official" version="1.9.2" exclude="Build,Analyzers" />
+        <dependency id="ChefKeys" version="0.1.2" exclude="Build,Analyzers" />
+        <dependency id="CommunityToolkit.Mvvm" version="8.4.0" exclude="Build,Analyzers" />
+        <dependency id="LiteDB" version="5.0.21" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Data.Sqlite.Core" version="10.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Hosting" version="9.0.1" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Toolkit.Uwp.Notifications" version="7.1.3" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Xaml.Behaviors.Wpf" version="1.1.135" exclude="Build,Analyzers" />
+        <dependency id="NHotkey" version="4.0.0" exclude="Build,Analyzers" />
+        <dependency id="NHotkey.Wpf" version="4.0.0" exclude="Build,Analyzers" />
+        <dependency id="SQLitePCLRaw.bundle_green" version="2.1.11" exclude="Build,Analyzers" />
+        <dependency id="ScreenGrab" version="1.0.14" exclude="Build,Analyzers" />
+        <dependency id="System.Management" version="10.0.0" exclude="Build,Analyzers" />
+        <dependency id="System.ServiceProcess.ServiceController" version="10.0.5" exclude="Build,Analyzers" />
+        <dependency id="WPF-UI" version="4.0.2" exclude="Build,Analyzers" />
+        <dependency id="WPF-UI.DependencyInjection" version="4.0.2" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net9.0-windows10.0.17763">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WPF" />
+      </group>
+    </frameworkReferences>
+    <contentFiles>
+      <files include="any/net9.0-windows10.0.17763/wpfui-icon.ico" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="E:\Desktop\wpf ip\Process\Function\Function\bin\Release\net9.0-windows10.0.17763.0\win-x64\Function.runtimeconfig.json" target="lib\net9.0-windows10.0.17763\Function.runtimeconfig.json" />
+    <file src="E:\Desktop\wpf ip\Process\Function\Function\bin\Release\net9.0-windows10.0.17763.0\win-x64\Function.dll" target="lib\net9.0-windows10.0.17763\Function.dll" />
+    <file src="E:\Desktop\wpf ip\Process\Function\Function\wpfui-icon.ico" target="content\wpfui-icon.ico" />
+    <file src="E:\Desktop\wpf ip\Process\Function\Function\wpfui-icon.ico" target="contentFiles\any\net9.0-windows10.0.17763\wpfui-icon.ico" />
+  </files>
+</package>

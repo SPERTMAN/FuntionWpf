@@ -1,0 +1,4 @@
+E:\Desktop\wpf ip\Process\Function\Function\bin\publish\net9.0-windows\publish\Function.pdb
+E:\Desktop\wpf ip\Process\Function\Function\bin\publish\net9.0-windows\publish\WebView2Loader.dll
+E:\Desktop\wpf ip\Process\Function\Function\bin\publish\net9.0-windows\publish\e_sqlite3.dll
+E:\Desktop\wpf ip\Process\Function\Function\bin\publish\net9.0-windows\publish\Function.exe
