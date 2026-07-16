@@ -17,5 +17,10 @@ namespace Function.Models
         public string OsVersion { get; init; } = string.Empty;
 
         public string Connected { get; set; } = string.Empty;
+
+        public string TwinCATVersion { get; set; } = string.Empty;
+
+        public string Fingerprint { get; set; } = string.Empty;
+        
     }
 }

@@ -464,6 +464,20 @@ namespace Function.ViewModels.Pages
         {
             try
             {
+                Statu IpInfo = GetRealtekInfo();
+                if (IpInfo.Status != Brushes.Green)
+                {
+                    snackbarService.Show(
+                   "网卡未连接",
+                   "请检查是否插上网线",
+                   ControlAppearance.Caution,
+                   new SymbolIcon(SymbolRegular.Warning24),
+                   TimeSpan.FromSeconds(2)
+                    );
+
+                    return;
+
+                }
                 ProAdsVis = Visibility.Visible;
                 if (BeckhoffInfo.Count > 0) BeckhoffInfo.Clear();
                 string LocalIp = IpInfoVar.Ip;
