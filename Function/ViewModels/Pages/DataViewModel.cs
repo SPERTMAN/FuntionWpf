@@ -468,6 +468,7 @@ namespace Function.ViewModels.Pages
                 if (IpInfo.Status != Brushes.Green)
                 {
                     snackbarService.Show(
+<<<<<<< HEAD
                         "网卡未连接",
                         "请检查是否插上网线",
                         ControlAppearance.Caution,
@@ -476,6 +477,18 @@ namespace Function.ViewModels.Pages
                     return;
                 }
 
+=======
+                   "网卡未连接",
+                   "请检查是否插上网线",
+                   ControlAppearance.Caution,
+                   new SymbolIcon(SymbolRegular.Warning24),
+                   TimeSpan.FromSeconds(2)
+                    );
+
+                    return;
+
+                }
+>>>>>>> 27642c9e5550c61120851934e8fabf1034e2d7dc
                 ProAdsVis = Visibility.Visible;
                 if (BeckhoffInfo.Count > 0) BeckhoffInfo.Clear();
                 string localIp = IpInfoVar.Ip;
